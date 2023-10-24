@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "DesignSystem"
 include(":app")
-include(":lib")
+include(":libDesign")

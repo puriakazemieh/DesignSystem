@@ -23,4 +23,5 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
