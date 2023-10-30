@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RoutaaButton">
+        <attr name="routaaCornerRadius" format="integer">
+            <enum name="eight" value="8" />
+            <enum name="hundred" value="100" />
+        </attr>
+        <attr name="leadingIcon" format="reference" />
+        <attr name="trailingIcon" format="reference" />
+        <attr name="text" format="string" />
+
+    </declare-styleable>
+
+</resources>
