@@ -1,4 +1,4 @@
-package com.kazemieh.designsystem.libdesign
+package com.kazemieh.designsystem.libdesign.color
 
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable

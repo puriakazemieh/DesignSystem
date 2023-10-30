@@ -1,4 +1,4 @@
-package com.kazemieh.designsystem.libdesign
+package com.kazemieh.designsystem.libdesign.color
 
 import android.annotation.SuppressLint
 import android.content.Context

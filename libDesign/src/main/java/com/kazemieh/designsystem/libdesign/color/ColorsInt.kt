@@ -1,7 +1,8 @@
-package com.kazemieh.designsystem.libdesign
+package com.kazemieh.designsystem.libdesign.color
 
 import android.annotation.SuppressLint
 import androidx.annotation.ColorInt
+import com.kazemieh.designsystem.libdesign.R
 
 @SuppressLint("ResourceAsColor")
 object ColorsInt {
