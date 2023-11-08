@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="RoutaaButton">
-        <attr name="routaaCornerRadius" format="integer">
+    <declare-styleable name="MyButton">
+        <attr name="myCornerRadius" format="integer">
             <enum name="eight" value="8" />
             <enum name="hundred" value="100" />
         </attr>

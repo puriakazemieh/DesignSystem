@@ -1,4 +1,4 @@
-package com.kazemieh.designsystem.libdesign.buttons
+package com.kazemieh.designsystem.libdesign.buttons.base
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -36,7 +36,7 @@ abstract class BaseButton<ColorPallet> @JvmOverloads constructor(
 ), OnClickListener, OnLongClickListener, OnTouchListener {
 
     companion object {
-        val TAG = "RoutaaButton"
+        val TAG = "BaseButton"
     }
 
     protected val binding: ButtonBinding
@@ -54,7 +54,7 @@ abstract class BaseButton<ColorPallet> @JvmOverloads constructor(
     protected abstract var pressedMaskColor: Int
     protected abstract var tintEnableColor: Int
 
-    protected abstract var routaaColors: ColorPallet
+    protected abstract var myColors: ColorPallet
 
     private var cornerRadiusId = CornerRadius.ROUND_100.cornerRadiusId
         set(value) {
@@ -114,7 +114,7 @@ abstract class BaseButton<ColorPallet> @JvmOverloads constructor(
         shape = GradientDrawable()
         shape.shape = GradientDrawable.RECTANGLE
 
-        typeArray = context.obtainStyledAttributes(attrs, R.styleable.RoutaaButton)
+        typeArray = context.obtainStyledAttributes(attrs, R.styleable.MyButton)
 
         setCornerRadius()
         setLeadingIcon()
@@ -131,21 +131,21 @@ abstract class BaseButton<ColorPallet> @JvmOverloads constructor(
 
     private fun setCornerRadius() {
         cornerRadiusId = typeArray.getInt(
-            R.styleable.RoutaaButton_routaaCornerRadius,
+            R.styleable.MyButton_myCornerRadius,
             CornerRadius.ROUND_8.cornerRadiusId
         )
     }
 
     private fun setLeadingIcon() {
-        leadingIcon = typeArray.getDrawable(R.styleable.RoutaaButton_leadingIcon)
+        leadingIcon = typeArray.getDrawable(R.styleable.MyButton_leadingIcon)
     }
 
     private fun setTrailingIcon() {
-        trailingIcon = typeArray.getDrawable(R.styleable.RoutaaButton_trailingIcon)
+        trailingIcon = typeArray.getDrawable(R.styleable.MyButton_trailingIcon)
     }
 
     private fun setText() {
-        text = typeArray.getString(R.styleable.RoutaaButton_text)
+        text = typeArray.getString(R.styleable.MyButton_text)
             ?: resources.getString(R.string.app_name)
     }
 
