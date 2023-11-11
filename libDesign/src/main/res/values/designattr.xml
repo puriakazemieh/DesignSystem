@@ -12,4 +12,25 @@
 
     </declare-styleable>
 
+    <declare-styleable name="smallButton">
+        <attr name="configurationSmallButton" format="enum">
+            <enum name="primary" value="0" />
+            <enum name="error" value="1" />
+        </attr>
+
+        <attr name="styleSmallButton" format="enum">
+            <enum name="field" value="0" />
+            <enum name="outline" value="1" />
+            <enum name="standard" value="2" />
+            <enum name="elevated" value="3" />
+            <enum name="tonal" value="4" />
+        </attr>
+
+        <attr name="stateSmallButton" format="enum">
+            <enum name="enable" value="0" />
+            <enum name="disable" value="1" />
+            <enum name="loading" value="2" />
+        </attr>
+    </declare-styleable>
+
 </resources>
