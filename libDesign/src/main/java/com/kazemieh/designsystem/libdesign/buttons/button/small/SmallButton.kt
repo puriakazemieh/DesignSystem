@@ -156,11 +156,7 @@ open class SmallButton @JvmOverloads constructor(
 
         binding.text.setPaddingRelative(end = dpToPxInt(4), start = dpToPxInt(4))
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            binding.text.setTextAppearance(R.style.FontLabelMedium)
-        } else {
-            binding.text.setTextAppearance(context, R.style.FontLabelMedium)
-        }
+        binding.text.setTextAppearance(R.style.FontLabelMedium)
 
 
         binding.mainLayout.setPaddingRelative(

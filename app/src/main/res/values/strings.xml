@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DesignSystem</string>
+
+    <string name="dark_mode">DarkMode</string>
+    <string name="small_button">small button</string>
+    <string name="roundness">Roundness</string>
+    <string name="show_leading_icon">Show Leading Icon</string>
+    <string name="show_trailing_icon">show Trailing Icon</string>
 </resources>
