@@ -1,6 +1,8 @@
 package com.kazemieh.designsystem.sample
 
 import android.annotation.SuppressLint
+import android.transition.AutoTransition
+import android.transition.TransitionManager
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -10,6 +12,11 @@ import com.kazemieh.designsystem.libdesign.buttons.button.small.ConfigurationSma
 import com.kazemieh.designsystem.libdesign.buttons.button.small.StateSmallButton
 import com.kazemieh.designsystem.libdesign.buttons.button.small.StyleSmallButton
 import com.kazemieh.designsystem.sample.databinding.ActivityMainBinding
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class SmallButtonSample(private val binding: ActivityMainBinding) {
@@ -17,7 +24,11 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
     companion object {
         val TAG = "SmallButtonSample"
     }
+
     fun smallButtonConfig() {
+
+        // show
+        showView()
 
         // corner
         cornerRadiusConfig()
@@ -48,10 +59,37 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
 
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun showView() {
+
+        binding.incSmallButtonSample.tvSmallButton.setOnClickListener {
+            if (binding.incSmallButtonSample.llSmallButton.visibility == View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(
+                    binding.incSmallButtonSample.parentLinearLayoutSmallButton,
+                    AutoTransition()
+                )
+                binding.incSmallButtonSample.llSmallButton.visibility = View.GONE
+                binding.incSmallButtonSample.tvSmallButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.round_expand_more_24, 0)
+
+            } else {
+                TransitionManager.beginDelayedTransition(
+                    binding.incSmallButtonSample.parentLinearLayoutSmallButton,
+                    AutoTransition()
+                )
+                binding.incSmallButtonSample.llSmallButton.visibility = View.VISIBLE
+                binding.incSmallButtonSample.tvSmallButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.round_expand_less_24, 0)
+
+            }
+        }
+
+    }
+
 
     private fun cornerRadiusConfig() {
         fun isCheckedSwitch(isCheck: Boolean) {
-            if (isCheck) binding.incSmallButtonSample.smallButton.cornerRadius = CornerRadius.ROUND_100
+            if (isCheck) binding.incSmallButtonSample.smallButton.cornerRadius =
+                CornerRadius.ROUND_100
             else binding.incSmallButtonSample.smallButton.cornerRadius = CornerRadius.ROUND_8
         }
         isCheckedSwitch(binding.incSmallButtonSample.switchRoundnessSmallButton.isChecked)
@@ -64,35 +102,46 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
     private fun configurationConfig() {
         val configurationList = arrayOf("Primary", "Error")
         val configurationAdapter =
-            ArrayAdapter(binding.incSmallButtonSample.root.context, android.R.layout.simple_spinner_item, configurationList)
+            ArrayAdapter(
+                binding.incSmallButtonSample.root.context,
+                android.R.layout.simple_spinner_item,
+                configurationList
+            )
         configurationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.incSmallButtonSample.spinnerConfigurationSmallButton.adapter = configurationAdapter
-        binding.incSmallButtonSample.spinnerConfigurationSmallButton.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                if (position == 0) {
-                    binding.incSmallButtonSample.smallButton.configuration = ConfigurationSmallButton.PRIMARY
-                } else {
-                    binding.incSmallButtonSample.smallButton.configuration = ConfigurationSmallButton.ERROR
+        binding.incSmallButtonSample.spinnerConfigurationSmallButton.onItemSelectedListener =
+            object :
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    if (position == 0) {
+                        binding.incSmallButtonSample.smallButton.configuration =
+                            ConfigurationSmallButton.PRIMARY
+                    } else {
+                        binding.incSmallButtonSample.smallButton.configuration =
+                            ConfigurationSmallButton.ERROR
+                    }
+
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
                 }
 
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-
-        }
     }
 
     private fun spinnerStyleConfig() {
         val styleList = arrayOf("FIELD", "OUTLINE", "TEXT", "ELEVATED", "TONAL")
         val styleAdapter =
-            ArrayAdapter(binding.incSmallButtonSample.root.context, android.R.layout.simple_spinner_item, styleList)
+            ArrayAdapter(
+                binding.incSmallButtonSample.root.context,
+                android.R.layout.simple_spinner_item,
+                styleList
+            )
         styleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.incSmallButtonSample.spinnerStyleSmallButton.adapter = styleAdapter
         binding.incSmallButtonSample.spinnerStyleSmallButton.onItemSelectedListener =
@@ -109,15 +158,18 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
                         }
 
                         1 -> {
-                            binding.incSmallButtonSample.smallButton.style = StyleSmallButton.OUTLINE
+                            binding.incSmallButtonSample.smallButton.style =
+                                StyleSmallButton.OUTLINE
                         }
 
                         2 -> {
-                            binding.incSmallButtonSample.smallButton.style = StyleSmallButton.STANDARD
+                            binding.incSmallButtonSample.smallButton.style =
+                                StyleSmallButton.STANDARD
                         }
 
                         3 -> {
-                            binding.incSmallButtonSample.smallButton.style = StyleSmallButton.ELEVATED
+                            binding.incSmallButtonSample.smallButton.style =
+                                StyleSmallButton.ELEVATED
                         }
 
                         4 -> {
@@ -136,7 +188,11 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
     private fun spinnerStateConfig() {
         val styleList = arrayOf("ENABLE", "DISABLE", "LOADING")
         val styleAdapter =
-            ArrayAdapter(binding.incSmallButtonSample.root.context, android.R.layout.simple_spinner_item, styleList)
+            ArrayAdapter(
+                binding.incSmallButtonSample.root.context,
+                android.R.layout.simple_spinner_item,
+                styleList
+            )
         styleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.incSmallButtonSample.spinnerStateSmallButton.adapter = styleAdapter
         binding.incSmallButtonSample.spinnerStateSmallButton.onItemSelectedListener =
@@ -153,11 +209,13 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
                         }
 
                         1 -> {
-                            binding.incSmallButtonSample.smallButton.state = StateSmallButton.DISABLE
+                            binding.incSmallButtonSample.smallButton.state =
+                                StateSmallButton.DISABLE
                         }
 
                         2 -> {
-                            binding.incSmallButtonSample.smallButton.state = StateSmallButton.LOADING
+                            binding.incSmallButtonSample.smallButton.state =
+                                StateSmallButton.LOADING
                         }
                     }
 
@@ -173,8 +231,10 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
     private fun leadingIconConfig() {
         @SuppressLint("UseCompatLoadingForDrawables")
         fun isCheckedSwitch(isCheck: Boolean) {
-            if (isCheck) binding.incSmallButtonSample.smallButton.leadingIcon = binding.incSmallButtonSample.root.context.getDrawable(
-                R.drawable.icon)
+            if (isCheck) binding.incSmallButtonSample.smallButton.leadingIcon =
+                binding.incSmallButtonSample.root.context.getDrawable(
+                    R.drawable.icon
+                )
             else binding.incSmallButtonSample.smallButton.leadingIcon = null
         }
         isCheckedSwitch(binding.incSmallButtonSample.switchShowLeadingIconSmallButton.isChecked)
@@ -186,8 +246,10 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
     private fun trailingIconConfig() {
         @SuppressLint("UseCompatLoadingForDrawables")
         fun isCheckedSwitch(isCheck: Boolean) {
-            if (isCheck) binding.incSmallButtonSample.smallButton.trailingIcon = binding.incSmallButtonSample.root.context.getDrawable(
-                R.drawable.icon)
+            if (isCheck) binding.incSmallButtonSample.smallButton.trailingIcon =
+                binding.incSmallButtonSample.root.context.getDrawable(
+                    R.drawable.icon
+                )
             else binding.incSmallButtonSample.smallButton.trailingIcon = null
         }
         isCheckedSwitch(binding.incSmallButtonSample.switchShowTrailingIconSmallButton.isChecked)

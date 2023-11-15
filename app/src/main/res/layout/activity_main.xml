@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:padding="8dp">
 
 
                 <include
