@@ -12,31 +12,39 @@ interface ColorsPallet {
     val onPrimary: Int
     val primaryContainer: Int
     val onPrimaryContainer: Int
+
     val secondary: Int
     val onSecondary: Int
     val secondaryContainer: Int
     val onSecondaryContainer: Int
+
     val tertiary: Int
     val onTertiary: Int
     val tertiaryContainer: Int
     val onTertiaryContainer: Int
+
     val error: Int
     val errorContainer: Int
     val onError: Int
     val onErrorContainer: Int
+
     val background: Int
     val onBackground: Int
+
     val surface: Int
     val onSurface: Int
     val surfaceVariant: Int
     val onSurfaceVariant: Int
+    val surfaceTint: Int
+
     val outline: Int
+    val outlineVariant: Int
+
     val inverseOnSurface: Int
     val inverseSurface: Int
     val inversePrimary: Int
+
     val shadow: Int
-    val surfaceTint: Int
-    val outlineVariant: Int
     val scrim: Int
 
 
