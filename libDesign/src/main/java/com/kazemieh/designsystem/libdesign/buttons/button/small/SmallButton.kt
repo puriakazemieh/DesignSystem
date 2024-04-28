@@ -47,7 +47,7 @@ open class SmallButton @JvmOverloads constructor(
 
     @SuppressLint("CustomViewStyleable")
     override var buttonTypeArray =
-        context.obtainStyledAttributes(attrs, R.styleable.MyButton)
+        context.obtainStyledAttributes(attrs, R.styleable.smallButton)
 
     override var state: StateSmallButton = StateSmallButton.ENABLE
         set(value) {

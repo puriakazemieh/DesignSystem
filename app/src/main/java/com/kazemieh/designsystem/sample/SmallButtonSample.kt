@@ -13,10 +13,6 @@ import com.kazemieh.designsystem.libdesign.buttons.button.small.StateSmallButton
 import com.kazemieh.designsystem.libdesign.buttons.button.small.StyleSmallButton
 import com.kazemieh.designsystem.sample.databinding.ActivityMainBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 
 class SmallButtonSample(private val binding: ActivityMainBinding) {
@@ -55,7 +51,7 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
         binding.incSmallButtonSample.smallButton.setOnClickListener {
             Log.d(TAG, "smallButtonConfig: clicked")
         }
-
+        binding.incSmallButtonSample.smallButton.text = binding.root.resources.getString(R.string.small_button)
 
     }
 
