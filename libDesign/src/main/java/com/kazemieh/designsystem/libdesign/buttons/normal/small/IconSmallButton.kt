@@ -1,4 +1,4 @@
-package com.kazemieh.designsystem.libdesign.buttons.button.small
+package com.kazemieh.designsystem.libdesign.buttons.normal.small
 
 import android.content.Context
 import android.util.AttributeSet

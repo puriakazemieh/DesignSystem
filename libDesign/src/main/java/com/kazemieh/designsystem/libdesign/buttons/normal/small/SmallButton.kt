@@ -1,4 +1,4 @@
-package com.kazemieh.designsystem.libdesign.buttons.button.small
+package com.kazemieh.designsystem.libdesign.buttons.normal.small
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,17 +6,14 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.graphics.drawable.StateListDrawable
-import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
-import androidx.core.view.marginEnd
-import androidx.core.view.marginStart
 import com.kazemieh.designsystem.libdesign.R
-import com.kazemieh.designsystem.libdesign.buttons.button.Button
-import com.kazemieh.designsystem.libdesign.buttons.button.ColorsPalletButtonImp
+import com.kazemieh.designsystem.libdesign.buttons.normal.Button
+import com.kazemieh.designsystem.libdesign.buttons.normal.ColorsPalletButtonImp
 import com.kazemieh.designsystem.libdesign.util.dpToPx
 import com.kazemieh.designsystem.libdesign.util.dpToPxInt
 import com.kazemieh.designsystem.libdesign.util.marginLayoutParams

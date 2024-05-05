@@ -8,9 +8,9 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.kazemieh.designsystem.libdesign.buttons.base.CornerRadius
-import com.kazemieh.designsystem.libdesign.buttons.button.small.ConfigurationSmallButton
-import com.kazemieh.designsystem.libdesign.buttons.button.small.StateSmallButton
-import com.kazemieh.designsystem.libdesign.buttons.button.small.StyleSmallButton
+import com.kazemieh.designsystem.libdesign.buttons.normal.small.ConfigurationSmallButton
+import com.kazemieh.designsystem.libdesign.buttons.normal.small.StateSmallButton
+import com.kazemieh.designsystem.libdesign.buttons.normal.small.StyleSmallButton
 import com.kazemieh.designsystem.sample.databinding.ActivityMainBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
 

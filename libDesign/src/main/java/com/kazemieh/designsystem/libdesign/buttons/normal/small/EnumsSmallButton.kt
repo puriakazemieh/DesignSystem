@@ -1,4 +1,4 @@
-package com.kazemieh.designsystem.libdesign.buttons.button.small
+package com.kazemieh.designsystem.libdesign.buttons.normal.small
 
 enum class ConfigurationSmallButton(val configurationId: Int) {
     PRIMARY(0), ERROR(1)

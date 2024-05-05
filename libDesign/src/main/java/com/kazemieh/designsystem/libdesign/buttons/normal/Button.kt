@@ -1,4 +1,4 @@
-package com.kazemieh.designsystem.libdesign.buttons.button
+package com.kazemieh.designsystem.libdesign.buttons.normal
 
 import android.content.Context
 import android.content.res.ColorStateList

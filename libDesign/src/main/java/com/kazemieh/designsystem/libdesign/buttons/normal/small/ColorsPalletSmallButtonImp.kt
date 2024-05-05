@@ -1,7 +1,7 @@
-package com.kazemieh.designsystem.libdesign.buttons.button.small
+package com.kazemieh.designsystem.libdesign.buttons.normal.small
 
 import android.content.Context
-import com.kazemieh.designsystem.libdesign.buttons.button.ColorsPalletButtonImp
+import com.kazemieh.designsystem.libdesign.buttons.normal.ColorsPalletButtonImp
 import com.kazemieh.designsystem.libdesign.color.ColorsInt.Primary
 import com.kazemieh.designsystem.libdesign.util.setAlpha
 

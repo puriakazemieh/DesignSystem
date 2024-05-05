@@ -47,7 +47,7 @@
                 tools:ignore="MissingDefaultResource"
                 tools:visibility="visible">
 
-                <com.kazemieh.designsystem.libdesign.buttons.button.small.SmallButton
+                <com.kazemieh.designsystem.libdesign.buttons.normal.small.SmallButton
                     android:id="@+id/smallButtonXml"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                     app:text="small button xml"
                     app:trailingIcon="@drawable/icon" />
 
-                <com.kazemieh.designsystem.libdesign.buttons.button.small.SmallButton
+                <com.kazemieh.designsystem.libdesign.buttons.normal.small.SmallButton
                     android:id="@+id/smallButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
