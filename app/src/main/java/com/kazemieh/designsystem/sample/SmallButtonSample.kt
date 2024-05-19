@@ -51,7 +51,8 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
         binding.incSmallButtonSample.smallButton.setOnClickListener {
             Log.d(TAG, "smallButtonConfig: clicked")
         }
-        binding.incSmallButtonSample.smallButton.text = binding.root.resources.getString(R.string.small_button)
+        binding.incSmallButtonSample.smallButton.text =
+            binding.root.resources.getString(R.string.small_button)
 
     }
 
@@ -66,7 +67,12 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
                     AutoTransition()
                 )
                 binding.incSmallButtonSample.llSmallButton.visibility = View.GONE
-                binding.incSmallButtonSample.tvSmallButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.round_expand_more_24, 0)
+                binding.incSmallButtonSample.tvSmallButton.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.round_expand_more_24,
+                    0
+                )
 
             } else {
                 TransitionManager.beginDelayedTransition(
@@ -74,7 +80,12 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
                     AutoTransition()
                 )
                 binding.incSmallButtonSample.llSmallButton.visibility = View.VISIBLE
-                binding.incSmallButtonSample.tvSmallButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.round_expand_less_24, 0)
+                binding.incSmallButtonSample.tvSmallButton.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.round_expand_less_24,
+                    0
+                )
 
             }
         }
@@ -87,6 +98,7 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
             if (isCheck) binding.incSmallButtonSample.smallButton.cornerRadius =
                 CornerRadius.ROUND_100
             else binding.incSmallButtonSample.smallButton.cornerRadius = CornerRadius.ROUND_8
+            // binding.incSmallButtonSample.smallButton.cornerRadius = 25 // number
         }
         isCheckedSwitch(binding.incSmallButtonSample.switchRoundnessSmallButton.isChecked)
         binding.incSmallButtonSample.switchRoundnessSmallButton.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -228,9 +240,7 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
         @SuppressLint("UseCompatLoadingForDrawables")
         fun isCheckedSwitch(isCheck: Boolean) {
             if (isCheck) binding.incSmallButtonSample.smallButton.leadingIcon =
-                binding.incSmallButtonSample.root.context.getDrawable(
-                    R.drawable.icon
-                )
+                binding.incSmallButtonSample.root.context.getDrawable(R.drawable.icon)
             else binding.incSmallButtonSample.smallButton.leadingIcon = null
         }
         isCheckedSwitch(binding.incSmallButtonSample.switchShowLeadingIconSmallButton.isChecked)

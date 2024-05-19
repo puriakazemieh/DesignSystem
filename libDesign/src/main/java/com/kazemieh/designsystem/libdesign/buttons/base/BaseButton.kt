@@ -74,11 +74,14 @@ abstract class BaseButton<ColorPallet> @JvmOverloads constructor(
             }
         }
 
-    var cornerRadius: CornerRadius = CornerRadius.ROUND_100
+    var cornerRadius: Any = CornerRadius.ROUND_100
         set(value) {
             field = value
             Log.d(TAG, "cornerRadius: $value ")
-            applyCorner(value.cornerRadiusId)
+            if (value is CornerRadius)
+                applyCorner(value.cornerRadiusId)
+            else if (value is Int)
+                applyCorner(value)
         }
 
     var leadingIcon: Drawable? = null
@@ -177,7 +180,10 @@ abstract class BaseButton<ColorPallet> @JvmOverloads constructor(
 
     protected fun getRippleColor(color: Int): Drawable {
         val outerRadii = FloatArray(8)
-        Arrays.fill(outerRadii, cornerRadius.cornerRadiusId.toFloat())
+        Arrays.fill(outerRadii,
+            ((cornerRadius as? CornerRadius)?.cornerRadiusId ?: (cornerRadius as? Int)
+            ?: 0).toFloat()
+        )
         val r = RoundRectShape(outerRadii, null, null)
         val shapeDrawable = ShapeDrawable(r)
         shapeDrawable.paint.color = color
