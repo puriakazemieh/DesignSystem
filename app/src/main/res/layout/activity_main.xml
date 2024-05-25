@@ -26,6 +26,10 @@
                     android:id="@+id/incSmallButtonSample"
                     layout="@layout/inc_small_button_sample" />
 
+                <include
+                    android:id="@+id/incIconSmallButtonSample"
+                    layout="@layout/inc_icon_small_button_sample" />
+
             </LinearLayout>
 
         </ScrollView>

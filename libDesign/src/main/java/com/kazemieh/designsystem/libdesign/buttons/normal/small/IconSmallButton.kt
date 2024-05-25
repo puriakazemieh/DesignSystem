@@ -30,6 +30,7 @@ class IconSmallButton @JvmOverloads constructor(
             width = dpToPxInt(24)
             height = dpToPxInt(24)
             marginEnd = dpToPxInt(0)
+            marginStart = dpToPxInt(0)
         }
 
         binding.text.layoutParam {

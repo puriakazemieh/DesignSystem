@@ -16,5 +16,6 @@ class MainActivity : AppCompatActivity() {
 //        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         SmallButtonSample(binding).smallButtonConfig()
+        IconSmallButtonSample(binding).iconSmallButtonConfig()
     }
 }

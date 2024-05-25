@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/parentLinearLayoutIconSmallButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingVertical="8dp"
+        app:cardBackgroundColor="@color/primaryContainer"
+        app:cardCornerRadius="8dp"
+        tools:ignore="MissingDefaultResource">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvIconSmallButton"
+                style="@style/FontLabelLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="20dp"
+                android:text="@string/icon_small_button"
+                android:textColor="@color/primary"
+                android:textSize="26sp"
+                app:drawableEndCompat="@drawable/round_expand_more_24"
+                app:drawableTint="@color/primary" />
+
+
+            <LinearLayout
+                android:id="@+id/llIconSmallButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:ignore="MissingDefaultResource"
+                tools:visibility="visible">
+
+                <com.kazemieh.designsystem.libdesign.buttons.normal.small.IconSmallButton
+                    android:id="@+id/iconSmallButtonXml"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="8dp"
+                    app:configurationSmallButton="primary"
+                    app:leadingIcon="@drawable/icon"
+                    app:myCornerRadius="eight"
+                    app:stateSmallButton="enable"
+                    app:styleSmallButton="field" />
+
+                <com.kazemieh.designsystem.libdesign.buttons.normal.small.IconSmallButton
+                    android:id="@+id/iconSmallButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="8dp" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchRoundnessIconSmallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="20dp"
+                    android:text="@string/roundness" />
+
+                <Spinner
+                    android:id="@+id/spinnerConfigurationIconSmallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="20dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerStyleIconSmallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="20dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerStateIconSmallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="20dp" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchShowLeadingIconIconSmallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="20dp"
+                    android:text="@string/show_leading_icon" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
