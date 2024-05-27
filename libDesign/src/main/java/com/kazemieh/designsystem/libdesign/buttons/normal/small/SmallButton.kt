@@ -11,22 +11,22 @@ import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
+import com.github.ybq.android.spinkit.sprite.Sprite
+import com.github.ybq.android.spinkit.style.ThreeBounce
 import com.kazemieh.designsystem.libdesign.R
-import com.kazemieh.designsystem.libdesign.buttons.normal.Button
+import com.kazemieh.designsystem.libdesign.buttons.base.BaseButton
 import com.kazemieh.designsystem.libdesign.buttons.normal.ColorsPalletButtonImp
 import com.kazemieh.designsystem.libdesign.util.dpToPx
 import com.kazemieh.designsystem.libdesign.util.dpToPxInt
 import com.kazemieh.designsystem.libdesign.util.marginLayoutParams
 import com.kazemieh.designsystem.libdesign.util.setMargin
-import com.kazemieh.designsystem.libdesign.util.updateLayoutParam
 import com.kazemieh.designsystem.libdesign.util.setPaddingRelative
-import com.github.ybq.android.spinkit.sprite.Sprite
-import com.github.ybq.android.spinkit.style.ThreeBounce
+import com.kazemieh.designsystem.libdesign.util.updateLayoutParam
 
 
 open class SmallButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet?, defStyleAttr: Int = 0,
-) : Button<StateSmallButton, StyleSmallButton, ConfigurationSmallButton>(
+) : BaseButton(
     context, attrs, defStyleAttr
 ) {
 

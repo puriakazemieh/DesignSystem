@@ -51,8 +51,8 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
         binding.incSmallButtonSample.smallButton.setOnClickListener {
             Log.d(TAG, "smallButtonConfig: clicked")
         }
-        binding.incSmallButtonSample.smallButton.text =
-            binding.root.resources.getString(R.string.small_button)
+//        binding.incSmallButtonSample.smallButton.text =
+//            binding.root.resources.getString(R.string.small_button)
 
     }
 

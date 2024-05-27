@@ -19,13 +19,17 @@ import android.view.View.OnLongClickListener
 import android.view.View.OnTouchListener
 import android.widget.FrameLayout
 import com.kazemieh.designsystem.libdesign.R
+import com.kazemieh.designsystem.libdesign.buttons.normal.ColorsPalletButtonImp
+import com.kazemieh.designsystem.libdesign.buttons.normal.small.ConfigurationSmallButton
+import com.kazemieh.designsystem.libdesign.buttons.normal.small.StateSmallButton
+import com.kazemieh.designsystem.libdesign.buttons.normal.small.StyleSmallButton
 import com.kazemieh.designsystem.libdesign.databinding.ButtonBinding
 import com.kazemieh.designsystem.libdesign.util.dpToPx
 import java.util.Arrays
 
 
 @SuppressLint("ClickableViewAccessibility", "CustomViewStyleable")
-abstract class BaseButton<ColorPallet> @JvmOverloads constructor(
+abstract class BaseButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet?,
     defStyleAttr: Int = 0
@@ -38,6 +42,21 @@ abstract class BaseButton<ColorPallet> @JvmOverloads constructor(
     companion object {
         val TAG = "BaseButton"
     }
+
+
+    protected abstract var stateId: Int
+    protected abstract var styleId: Int
+    protected abstract var configurationId: Int
+    protected abstract var disableColor: Int?
+    protected abstract var tintDisableColor: Int
+    protected abstract var borderColor: Int
+
+
+    abstract var buttonTypeArray: TypedArray
+
+    abstract var configuration: ConfigurationSmallButton
+    abstract var style: StyleSmallButton
+    abstract var state: StateSmallButton
 
     protected val binding: ButtonBinding
     protected val shape: GradientDrawable
@@ -54,7 +73,7 @@ abstract class BaseButton<ColorPallet> @JvmOverloads constructor(
     protected abstract var pressedMaskColor: Int
     protected abstract var tintEnableColor: Int
 
-    protected abstract var myColors: ColorPallet
+    protected abstract var myColors: ColorsPalletButtonImp
 
     private var cornerRadiusId = CornerRadius.ROUND_100.cornerRadiusId
         set(value) {
@@ -127,9 +146,24 @@ abstract class BaseButton<ColorPallet> @JvmOverloads constructor(
         typeArray.recycle()
     }
 
+    protected abstract fun state()
+
+
+    fun getStateColorTint(tintEnable: Int? = tintEnableColor): ColorStateList {
+        return ColorStateList(
+            arrayOf(
+                intArrayOf(-android.R.attr.state_enabled),
+                intArrayOf()
+            ), tintEnable?.let {
+                intArrayOf(
+                    tintDisableColor,
+                    it
+                )
+            }
+        )
+    }
     protected abstract fun invalidateLayout()
     protected abstract fun setStyleColor()
-    abstract fun getStateColorTint(tintEnable: Int? = tintEnableColor): ColorStateList
     protected abstract fun stateListDrawable(): StateListDrawable
 
     private fun setCornerRadius() {
@@ -164,6 +198,7 @@ abstract class BaseButton<ColorPallet> @JvmOverloads constructor(
         val corner = dpToPx(value)
         shape.cornerRadii =
             floatArrayOf(corner, corner, corner, corner, corner, corner, corner, corner)
+        invalidateLayout()
     }
 
     protected fun setOnClickListener(event: () -> Unit) {
