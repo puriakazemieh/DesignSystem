@@ -1,7 +1,7 @@
 package com.kazemieh.designsystem.libdesign.buttons.normal.small
 
 import android.content.Context
-import com.kazemieh.designsystem.libdesign.buttons.normal.ColorsPalletButtonImp
+import com.kazemieh.designsystem.libdesign.buttons.base.ColorsPalletBaseButtonImp
 import com.kazemieh.designsystem.libdesign.color.ColorsInt.Primary
 import com.kazemieh.designsystem.libdesign.util.setAlpha
 
@@ -10,7 +10,7 @@ class ColorsPalletSmallButtonImp(
     configuration: ConfigurationSmallButton,
     style: StyleSmallButton,
     state: StateSmallButton
-) : ColorsPalletButtonImp(context) {
+) : ColorsPalletBaseButtonImp(context) {
 
 
     override val normal: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {

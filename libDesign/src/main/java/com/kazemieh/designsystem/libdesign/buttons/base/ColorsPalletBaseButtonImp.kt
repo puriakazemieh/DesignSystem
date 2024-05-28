@@ -9,4 +9,9 @@ abstract class ColorsPalletBaseButtonImp(context: Context) : ColorsPalletImp(con
     abstract val pressed: Int
     abstract val pressedMask: Int
 
+    abstract val disable: Int?
+    abstract val tintEnable: Int
+    abstract val tintDisable: Int
+    abstract val border: Int
+
 }
