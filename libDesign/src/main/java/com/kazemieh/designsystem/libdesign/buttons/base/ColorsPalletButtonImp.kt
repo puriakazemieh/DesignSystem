@@ -1,22 +1,24 @@
-package com.kazemieh.designsystem.libdesign.buttons.normal.small
+package com.kazemieh.designsystem.libdesign.buttons.base
 
 import android.content.Context
-import com.kazemieh.designsystem.libdesign.buttons.base.ColorsPalletBaseButtonImp
-import com.kazemieh.designsystem.libdesign.color.ColorsInt.Primary
+import com.kazemieh.designsystem.libdesign.buttons.normal.small.ConfigurationSmallButton
+import com.kazemieh.designsystem.libdesign.buttons.normal.small.StateSmallButton
+import com.kazemieh.designsystem.libdesign.buttons.normal.small.StyleSmallButton
+import com.kazemieh.designsystem.libdesign.color.ColorsPalletImp
 import com.kazemieh.designsystem.libdesign.util.setAlpha
 
-class ColorsPalletSmallButtonImp(
+class ColorsPalletButtonImp(
     context: Context,
     configuration: ConfigurationSmallButton,
     style: StyleSmallButton,
     state: StateSmallButton
-) : ColorsPalletBaseButtonImp(context) {
+) : ColorsPalletImp(context) {
 
 
-    override val normal: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
+     val normal: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
         when (style) {
             StyleSmallButton.FIELD -> {
-                Primary
+                primary
             }
 
             StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD -> {
@@ -54,14 +56,14 @@ class ColorsPalletSmallButtonImp(
     }
 
 
-    override val pressed: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
+     val pressed: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
         when (style) {
             StyleSmallButton.FIELD -> {
                 onPrimary
             }
 
             StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED, StyleSmallButton.TONAL -> {
-                Primary
+                primary
             }
         }
 
@@ -79,14 +81,14 @@ class ColorsPalletSmallButtonImp(
     }
 
 
-    override val pressedMask: Int = (if (configuration == ConfigurationSmallButton.PRIMARY) {
+     val pressedMask: Int = (if (configuration == ConfigurationSmallButton.PRIMARY) {
         when (style) {
             StyleSmallButton.FIELD -> {
                 onPrimary
             }
 
             StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED, StyleSmallButton.TONAL -> {
-                Primary
+                primary
             }
         }
 
@@ -104,7 +106,7 @@ class ColorsPalletSmallButtonImp(
     }).setAlpha(alpha12)
 
 
-    override val disable: Int? = (when (style) {
+     val disable: Int? = (when (style) {
         StyleSmallButton.FIELD, StyleSmallButton.OUTLINE, StyleSmallButton.ELEVATED, StyleSmallButton.TONAL -> {
             onSurface.setAlpha(alpha12)
         }
@@ -116,14 +118,14 @@ class ColorsPalletSmallButtonImp(
     })
 
 
-    override val tintEnable: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
+     val tintEnable: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
         when (style) {
             StyleSmallButton.FIELD -> {
                 onPrimary
             }
 
             StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED, StyleSmallButton.TONAL -> {
-                Primary
+                primary
             }
 
         }
@@ -143,10 +145,10 @@ class ColorsPalletSmallButtonImp(
     }
 
 
-    override val tintDisable: Int = onSurface.setAlpha(alpha38)
+     val tintDisable: Int = onSurface.setAlpha(alpha38)
 
 
-    override val border: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
+     val border: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
         if (state == StateSmallButton.DISABLE) {
             when (style) {
                 StyleSmallButton.TONAL -> {
@@ -165,7 +167,7 @@ class ColorsPalletSmallButtonImp(
                 }
 
                 StyleSmallButton.TONAL -> {
-                    Primary
+                    primary
                 }
 
                 StyleSmallButton.FIELD, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED -> {

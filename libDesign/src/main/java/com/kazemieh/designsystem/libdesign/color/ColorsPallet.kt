@@ -7,7 +7,6 @@ interface ColorsPallet {
 
     fun drawable(color: (ColorsPallet.() -> Int)): Drawable = ColorDrawable(color.invoke(this))
 
-
     val primary: Int
     val onPrimary: Int
     val primaryContainer: Int

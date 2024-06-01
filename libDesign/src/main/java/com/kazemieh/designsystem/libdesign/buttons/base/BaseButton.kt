@@ -72,7 +72,7 @@ abstract class BaseButton @JvmOverloads constructor(
     protected abstract var pressedMaskColor: Int
     protected abstract var tintEnableColor: Int
 
-    protected abstract var myColors: ColorsPalletBaseButtonImp
+    protected abstract var myColors: ColorsPalletButtonImp
 
     private var cornerRadiusId = CornerRadius.ROUND_100.cornerRadiusId
         set(value) {

@@ -15,7 +15,7 @@ import com.github.ybq.android.spinkit.sprite.Sprite
 import com.github.ybq.android.spinkit.style.ThreeBounce
 import com.kazemieh.designsystem.libdesign.R
 import com.kazemieh.designsystem.libdesign.buttons.base.BaseButton
-import com.kazemieh.designsystem.libdesign.buttons.base.ColorsPalletBaseButtonImp
+import com.kazemieh.designsystem.libdesign.buttons.base.ColorsPalletButtonImp
 import com.kazemieh.designsystem.libdesign.util.dpToPx
 import com.kazemieh.designsystem.libdesign.util.dpToPxInt
 import com.kazemieh.designsystem.libdesign.util.marginLayoutParams
@@ -127,8 +127,8 @@ open class SmallButton @JvmOverloads constructor(
             }
         }
 
-    override var myColors: ColorsPalletBaseButtonImp =
-        ColorsPalletSmallButtonImp(context, configuration, style, state)
+    override var myColors: ColorsPalletButtonImp =
+        ColorsPalletButtonImp(context, configuration, style, state)
         set(value) {
             field = value
             normalColor = myColors.normal
@@ -391,7 +391,7 @@ open class SmallButton @JvmOverloads constructor(
     }
 
     override fun setStyleColor() {
-        myColors = ColorsPalletSmallButtonImp(context, configuration, style, state)
+        myColors = ColorsPalletButtonImp(context, configuration, style, state)
     }
 
     private fun setState() {
