@@ -16,6 +16,9 @@ import com.github.ybq.android.spinkit.style.ThreeBounce
 import com.kazemieh.designsystem.libdesign.R
 import com.kazemieh.designsystem.libdesign.buttons.base.BaseButton
 import com.kazemieh.designsystem.libdesign.buttons.base.ColorsPalletButtonImp
+import com.kazemieh.designsystem.libdesign.buttons.base.ConfigurationButton
+import com.kazemieh.designsystem.libdesign.buttons.base.StateButton
+import com.kazemieh.designsystem.libdesign.buttons.base.StyleButton
 import com.kazemieh.designsystem.libdesign.util.dpToPx
 import com.kazemieh.designsystem.libdesign.util.dpToPxInt
 import com.kazemieh.designsystem.libdesign.util.marginLayoutParams
@@ -33,10 +36,10 @@ open class SmallButton @JvmOverloads constructor(
 
     private val threeBounce: Sprite? = ThreeBounce()
     private val progressBar: ProgressBar? = ProgressBar(context).apply {
-        isVisible = state == StateSmallButton.LOADING
-        binding.text.isVisible = state != StateSmallButton.LOADING
-        binding.trailingIcon.isVisible = state != StateSmallButton.LOADING
-        binding.leadingIcon.isVisible = state != StateSmallButton.LOADING
+        isVisible = state == StateButton.LOADING
+        binding.text.isVisible = state != StateButton.LOADING
+        binding.trailingIcon.isVisible = state != StateButton.LOADING
+        binding.leadingIcon.isVisible = state != StateButton.LOADING
         indeterminateDrawable = threeBounce
         threeBounce?.color = tintEnableColor
         binding.mainLayout.addView(this)
@@ -46,84 +49,84 @@ open class SmallButton @JvmOverloads constructor(
     override var buttonTypeArray =
         context.obtainStyledAttributes(attrs, R.styleable.smallButton)
 
-    override var state: StateSmallButton = StateSmallButton.ENABLE
+    override var state: StateButton = StateButton.ENABLE
         set(value) {
             field = value
             state()
         }
 
-    override var stateId = StateSmallButton.ENABLE.stateId
+    override var stateId = StateButton.ENABLE.stateId
         set(value) {
             field = value
             state = when (value) {
-                StateSmallButton.ENABLE.stateId -> {
-                    StateSmallButton.ENABLE
+                StateButton.ENABLE.stateId -> {
+                    StateButton.ENABLE
                 }
 
-                StateSmallButton.DISABLE.stateId -> {
-                    StateSmallButton.DISABLE
+                StateButton.DISABLE.stateId -> {
+                    StateButton.DISABLE
                 }
 
-                StateSmallButton.LOADING.stateId -> {
-                    StateSmallButton.LOADING
+                StateButton.LOADING.stateId -> {
+                    StateButton.LOADING
                 }
 
                 else -> {
-                    StateSmallButton.ENABLE
+                    StateButton.ENABLE
                 }
             }
         }
 
-    override var style: StyleSmallButton = StyleSmallButton.FIELD
+    override var style: StyleButton = StyleButton.FIELD
         set(value) {
             field = value
             setStyleColor()
         }
 
-    override var styleId = StyleSmallButton.FIELD.styleId
+    override var styleId = StyleButton.FIELD.styleId
         set(value) {
             field = value
             style = when (value) {
-                StyleSmallButton.FIELD.styleId -> {
-                    StyleSmallButton.FIELD
+                StyleButton.FIELD.styleId -> {
+                    StyleButton.FIELD
                 }
 
-                StyleSmallButton.OUTLINE.styleId -> {
-                    StyleSmallButton.OUTLINE
+                StyleButton.OUTLINE.styleId -> {
+                    StyleButton.OUTLINE
                 }
 
-                StyleSmallButton.STANDARD.styleId -> {
-                    StyleSmallButton.STANDARD
+                StyleButton.STANDARD.styleId -> {
+                    StyleButton.STANDARD
                 }
 
-                StyleSmallButton.ELEVATED.styleId -> {
-                    StyleSmallButton.ELEVATED
+                StyleButton.ELEVATED.styleId -> {
+                    StyleButton.ELEVATED
                 }
 
-                StyleSmallButton.TONAL.styleId -> {
-                    StyleSmallButton.TONAL
+                StyleButton.TONAL.styleId -> {
+                    StyleButton.TONAL
                 }
 
 
                 else -> {
-                    StyleSmallButton.FIELD
+                    StyleButton.FIELD
                 }
             }
         }
 
-    override var configuration: ConfigurationSmallButton = ConfigurationSmallButton.PRIMARY
+    override var configuration: ConfigurationButton = ConfigurationButton.PRIMARY
         set(value) {
             field = value
             setStyleColor()
         }
 
-    override var configurationId = ConfigurationSmallButton.PRIMARY.configurationId
+    override var configurationId = ConfigurationButton.PRIMARY.configurationId
         set(value) {
             field = value
-            configuration = if (value == ConfigurationSmallButton.PRIMARY.configurationId) {
-                ConfigurationSmallButton.PRIMARY
+            configuration = if (value == ConfigurationButton.PRIMARY.configurationId) {
+                ConfigurationButton.PRIMARY
             } else {
-                ConfigurationSmallButton.ERROR
+                ConfigurationButton.ERROR
             }
         }
 
@@ -211,12 +214,12 @@ open class SmallButton @JvmOverloads constructor(
 
         if (style != null)
             when (style) {
-                StyleSmallButton.TONAL -> {
+                StyleButton.TONAL -> {
                     shape.setStroke(dpToPxInt(1), borderColor)
                 }
 
-                StyleSmallButton.OUTLINE -> {
-                    if (state == StateSmallButton.DISABLE) {
+                StyleButton.OUTLINE -> {
+                    if (state == StateButton.DISABLE) {
                         shape.setStroke(dpToPxInt(0), borderColor)
                     } else {
                         shape.setStroke(dpToPxInt(1), borderColor)
@@ -228,9 +231,9 @@ open class SmallButton @JvmOverloads constructor(
                 }
             }
 
-        if (style == StyleSmallButton.ELEVATED) {
+        if (style == StyleButton.ELEVATED) {
 
-            if (state == StateSmallButton.DISABLE) {
+            if (state == StateButton.DISABLE) {
                 binding.mainLayout.elevation = dpToPx(0)
                 binding.mainLayout.setMargin(0)
 
@@ -270,7 +273,7 @@ open class SmallButton @JvmOverloads constructor(
             }
         }
 
-        if (state == StateSmallButton.LOADING) {
+        if (state == StateButton.LOADING) {
             binding.mainLayout.setPaddingRelative(
                 /* start =*/  dpToPxInt(0),
                 /* top =*/ dpToPxInt(0),
@@ -313,7 +316,7 @@ open class SmallButton @JvmOverloads constructor(
 
         val stateListDrawable = StateListDrawable()
 
-        if (state == StateSmallButton.ENABLE)
+        if (state == StateButton.ENABLE)
             stateListDrawable.addState(
                 intArrayOf(android.R.attr.state_pressed),
                 rippleDrawable
@@ -333,9 +336,9 @@ open class SmallButton @JvmOverloads constructor(
 
     override fun state() {
         setStyleColor()
-        progressBar?.isVisible = state == StateSmallButton.LOADING
+        progressBar?.isVisible = state == StateButton.LOADING
         when (state) {
-            StateSmallButton.ENABLE -> {
+            StateButton.ENABLE -> {
 
                 binding.text.isVisible = true
                 binding.trailingIcon.isVisible = true
@@ -349,7 +352,7 @@ open class SmallButton @JvmOverloads constructor(
 
             }
 
-            StateSmallButton.DISABLE -> {
+            StateButton.DISABLE -> {
 
                 binding.text.isVisible = true
                 binding.trailingIcon.isVisible = true
@@ -362,7 +365,7 @@ open class SmallButton @JvmOverloads constructor(
                 binding.cl.isEnabled = false
             }
 
-            StateSmallButton.LOADING -> {
+            StateButton.LOADING -> {
 
                 binding.text.isEnabled = true
                 binding.mainLayout.isEnabled = true
@@ -397,14 +400,14 @@ open class SmallButton @JvmOverloads constructor(
     private fun setState() {
         stateId = buttonTypeArray.getInt(
             R.styleable.smallButton_stateSmallButton,
-            StateSmallButton.ENABLE.stateId
+            StateButton.ENABLE.stateId
         )
     }
 
     private fun setStyle() {
         styleId = buttonTypeArray.getInt(
             R.styleable.smallButton_styleSmallButton,
-            StyleSmallButton.FIELD.styleId
+            StyleButton.FIELD.styleId
         )
 
     }
@@ -412,7 +415,7 @@ open class SmallButton @JvmOverloads constructor(
     private fun setConfiguration() {
         configurationId = buttonTypeArray.getInt(
             R.styleable.smallButton_configurationSmallButton,
-            ConfigurationSmallButton.PRIMARY.configurationId
+            ConfigurationButton.PRIMARY.configurationId
         )
     }
 

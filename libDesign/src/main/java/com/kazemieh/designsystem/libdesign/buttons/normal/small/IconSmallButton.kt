@@ -5,6 +5,8 @@ import android.util.AttributeSet
 import android.view.ViewOutlineProvider
 import androidx.core.view.isVisible
 import com.kazemieh.designsystem.libdesign.buttons.base.CornerRadius
+import com.kazemieh.designsystem.libdesign.buttons.base.StateButton
+import com.kazemieh.designsystem.libdesign.buttons.base.StyleButton
 import com.kazemieh.designsystem.libdesign.util.dpToPx
 import com.kazemieh.designsystem.libdesign.util.dpToPxInt
 import com.kazemieh.designsystem.libdesign.util.layoutParam
@@ -48,9 +50,9 @@ class IconSmallButton @JvmOverloads constructor(
 
     override fun invalidateLayout() {
         super.invalidateLayout()
-        if (style == StyleSmallButton.ELEVATED) {
+        if (style == StyleButton.ELEVATED) {
 
-            if (state == StateSmallButton.DISABLE) {
+            if (state == StateButton.DISABLE) {
                 binding.mainLayout.elevation = dpToPx(0)
                 binding.mainLayout.setMargin(0)
 

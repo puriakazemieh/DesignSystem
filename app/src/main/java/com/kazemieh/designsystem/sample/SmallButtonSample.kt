@@ -7,10 +7,10 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.kazemieh.designsystem.libdesign.buttons.base.ConfigurationButton
 import com.kazemieh.designsystem.libdesign.buttons.base.CornerRadius
-import com.kazemieh.designsystem.libdesign.buttons.normal.small.ConfigurationSmallButton
-import com.kazemieh.designsystem.libdesign.buttons.normal.small.StateSmallButton
-import com.kazemieh.designsystem.libdesign.buttons.normal.small.StyleSmallButton
+import com.kazemieh.designsystem.libdesign.buttons.base.StateButton
+import com.kazemieh.designsystem.libdesign.buttons.base.StyleButton
 import com.kazemieh.designsystem.sample.databinding.ActivityMainBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
 
@@ -128,10 +128,10 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
                 ) {
                     if (position == 0) {
                         binding.incSmallButtonSample.smallButton.configuration =
-                            ConfigurationSmallButton.PRIMARY
+                            ConfigurationButton.PRIMARY
                     } else {
                         binding.incSmallButtonSample.smallButton.configuration =
-                            ConfigurationSmallButton.ERROR
+                            ConfigurationButton.ERROR
                     }
 
                 }
@@ -162,26 +162,26 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
                 ) {
                     when (position) {
                         0 -> {
-                            binding.incSmallButtonSample.smallButton.style = StyleSmallButton.FIELD
+                            binding.incSmallButtonSample.smallButton.style = StyleButton.FIELD
                         }
 
                         1 -> {
                             binding.incSmallButtonSample.smallButton.style =
-                                StyleSmallButton.OUTLINE
+                                StyleButton.OUTLINE
                         }
 
                         2 -> {
                             binding.incSmallButtonSample.smallButton.style =
-                                StyleSmallButton.STANDARD
+                                StyleButton.STANDARD
                         }
 
                         3 -> {
                             binding.incSmallButtonSample.smallButton.style =
-                                StyleSmallButton.ELEVATED
+                                StyleButton.ELEVATED
                         }
 
                         4 -> {
-                            binding.incSmallButtonSample.smallButton.style = StyleSmallButton.TONAL
+                            binding.incSmallButtonSample.smallButton.style = StyleButton.TONAL
                         }
                     }
 
@@ -213,17 +213,17 @@ class SmallButtonSample(private val binding: ActivityMainBinding) {
                 ) {
                     when (position) {
                         0 -> {
-                            binding.incSmallButtonSample.smallButton.state = StateSmallButton.ENABLE
+                            binding.incSmallButtonSample.smallButton.state = StateButton.ENABLE
                         }
 
                         1 -> {
                             binding.incSmallButtonSample.smallButton.state =
-                                StateSmallButton.DISABLE
+                                StateButton.DISABLE
                         }
 
                         2 -> {
                             binding.incSmallButtonSample.smallButton.state =
-                                StateSmallButton.LOADING
+                                StateButton.LOADING
                         }
                     }
 

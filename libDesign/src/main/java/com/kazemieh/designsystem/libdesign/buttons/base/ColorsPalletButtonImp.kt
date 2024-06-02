@@ -1,54 +1,51 @@
 package com.kazemieh.designsystem.libdesign.buttons.base
 
 import android.content.Context
-import com.kazemieh.designsystem.libdesign.buttons.normal.small.ConfigurationSmallButton
-import com.kazemieh.designsystem.libdesign.buttons.normal.small.StateSmallButton
-import com.kazemieh.designsystem.libdesign.buttons.normal.small.StyleSmallButton
 import com.kazemieh.designsystem.libdesign.color.ColorsPalletImp
 import com.kazemieh.designsystem.libdesign.util.setAlpha
 
 class ColorsPalletButtonImp(
     context: Context,
-    configuration: ConfigurationSmallButton,
-    style: StyleSmallButton,
-    state: StateSmallButton
+    configuration: ConfigurationButton,
+    style: StyleButton,
+    state: StateButton
 ) : ColorsPalletImp(context) {
 
 
-     val normal: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
+    val normal: Int = if (configuration == ConfigurationButton.PRIMARY) {
         when (style) {
-            StyleSmallButton.FIELD -> {
+            StyleButton.FIELD -> {
                 primary
             }
 
-            StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD -> {
+            StyleButton.OUTLINE, StyleButton.STANDARD -> {
                 surface
             }
 
-            StyleSmallButton.TONAL -> {
+            StyleButton.TONAL -> {
                 secondaryContainer
             }
 
-            StyleSmallButton.ELEVATED -> {
+            StyleButton.ELEVATED -> {
                 surfaceTint
             }
         }
 
     } else {
         when (style) {
-            StyleSmallButton.FIELD -> {
+            StyleButton.FIELD -> {
                 error
             }
 
-            StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD -> {
+            StyleButton.OUTLINE, StyleButton.STANDARD -> {
                 surface
             }
 
-            StyleSmallButton.TONAL -> {
+            StyleButton.TONAL -> {
                 errorContainer
             }
 
-            StyleSmallButton.ELEVATED -> {
+            StyleButton.ELEVATED -> {
                 surfaceTint
             }
         }
@@ -56,24 +53,24 @@ class ColorsPalletButtonImp(
     }
 
 
-     val pressed: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
+    val pressed: Int = if (configuration == ConfigurationButton.PRIMARY) {
         when (style) {
-            StyleSmallButton.FIELD -> {
+            StyleButton.FIELD -> {
                 onPrimary
             }
 
-            StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED, StyleSmallButton.TONAL -> {
+            StyleButton.OUTLINE, StyleButton.STANDARD, StyleButton.ELEVATED, StyleButton.TONAL -> {
                 primary
             }
         }
 
     } else {
         when (style) {
-            StyleSmallButton.FIELD -> {
+            StyleButton.FIELD -> {
                 onError
             }
 
-            StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED, StyleSmallButton.TONAL -> {
+            StyleButton.OUTLINE, StyleButton.STANDARD, StyleButton.ELEVATED, StyleButton.TONAL -> {
                 error
             }
         }
@@ -81,24 +78,24 @@ class ColorsPalletButtonImp(
     }
 
 
-     val pressedMask: Int = (if (configuration == ConfigurationSmallButton.PRIMARY) {
+    val pressedMask: Int = (if (configuration == ConfigurationButton.PRIMARY) {
         when (style) {
-            StyleSmallButton.FIELD -> {
+            StyleButton.FIELD -> {
                 onPrimary
             }
 
-            StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED, StyleSmallButton.TONAL -> {
+            StyleButton.OUTLINE, StyleButton.STANDARD, StyleButton.ELEVATED, StyleButton.TONAL -> {
                 primary
             }
         }
 
     } else {
         when (style) {
-            StyleSmallButton.FIELD -> {
+            StyleButton.FIELD -> {
                 onError
             }
 
-            StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED, StyleSmallButton.TONAL -> {
+            StyleButton.OUTLINE, StyleButton.STANDARD, StyleButton.ELEVATED, StyleButton.TONAL -> {
                 error
             }
         }
@@ -106,25 +103,25 @@ class ColorsPalletButtonImp(
     }).setAlpha(alpha12)
 
 
-     val disable: Int? = (when (style) {
-        StyleSmallButton.FIELD, StyleSmallButton.OUTLINE, StyleSmallButton.ELEVATED, StyleSmallButton.TONAL -> {
+    val disable: Int? = (when (style) {
+        StyleButton.FIELD, StyleButton.OUTLINE, StyleButton.ELEVATED, StyleButton.TONAL -> {
             onSurface.setAlpha(alpha12)
         }
 
-        StyleSmallButton.STANDARD -> {
+        StyleButton.STANDARD -> {
             null
         }
 
     })
 
 
-     val tintEnable: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
+    val tintEnable: Int = if (configuration == ConfigurationButton.PRIMARY) {
         when (style) {
-            StyleSmallButton.FIELD -> {
+            StyleButton.FIELD -> {
                 onPrimary
             }
 
-            StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED, StyleSmallButton.TONAL -> {
+            StyleButton.OUTLINE, StyleButton.STANDARD, StyleButton.ELEVATED, StyleButton.TONAL -> {
                 primary
             }
 
@@ -132,11 +129,11 @@ class ColorsPalletButtonImp(
 
     } else {
         when (style) {
-            StyleSmallButton.FIELD -> {
+            StyleButton.FIELD -> {
                 onError
             }
 
-            StyleSmallButton.OUTLINE, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED, StyleSmallButton.TONAL -> {
+            StyleButton.OUTLINE, StyleButton.STANDARD, StyleButton.ELEVATED, StyleButton.TONAL -> {
                 error
             }
 
@@ -145,32 +142,32 @@ class ColorsPalletButtonImp(
     }
 
 
-     val tintDisable: Int = onSurface.setAlpha(alpha38)
+    val tintDisable: Int = onSurface.setAlpha(alpha38)
 
 
-     val border: Int = if (configuration == ConfigurationSmallButton.PRIMARY) {
-        if (state == StateSmallButton.DISABLE) {
+    val border: Int = if (configuration == ConfigurationButton.PRIMARY) {
+        if (state == StateButton.DISABLE) {
             when (style) {
-                StyleSmallButton.TONAL -> {
+                StyleButton.TONAL -> {
                     outline
                 }
 
-                StyleSmallButton.FIELD, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED, StyleSmallButton.OUTLINE -> {
+                StyleButton.FIELD, StyleButton.STANDARD, StyleButton.ELEVATED, StyleButton.OUTLINE -> {
                     surface
                 }
 
             }
         } else {
             when (style) {
-                StyleSmallButton.OUTLINE -> {
+                StyleButton.OUTLINE -> {
                     outline
                 }
 
-                StyleSmallButton.TONAL -> {
+                StyleButton.TONAL -> {
                     primary
                 }
 
-                StyleSmallButton.FIELD, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED -> {
+                StyleButton.FIELD, StyleButton.STANDARD, StyleButton.ELEVATED -> {
                     surface
                 }
 
@@ -179,28 +176,28 @@ class ColorsPalletButtonImp(
 
 
     } else {
-        if (state == StateSmallButton.DISABLE) {
+        if (state == StateButton.DISABLE) {
             when (style) {
-                StyleSmallButton.TONAL -> {
+                StyleButton.TONAL -> {
                     outline
                 }
 
-                StyleSmallButton.FIELD, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED, StyleSmallButton.OUTLINE -> {
+                StyleButton.FIELD, StyleButton.STANDARD, StyleButton.ELEVATED, StyleButton.OUTLINE -> {
                     surface
                 }
 
             }
         } else {
             when (style) {
-                StyleSmallButton.OUTLINE -> {
+                StyleButton.OUTLINE -> {
                     outline
                 }
 
-                StyleSmallButton.TONAL -> {
+                StyleButton.TONAL -> {
                     error
                 }
 
-                StyleSmallButton.FIELD, StyleSmallButton.STANDARD, StyleSmallButton.ELEVATED -> {
+                StyleButton.FIELD, StyleButton.STANDARD, StyleButton.ELEVATED -> {
                     surface
                 }
 

@@ -19,9 +19,6 @@ import android.view.View.OnLongClickListener
 import android.view.View.OnTouchListener
 import android.widget.FrameLayout
 import com.kazemieh.designsystem.libdesign.R
-import com.kazemieh.designsystem.libdesign.buttons.normal.small.ConfigurationSmallButton
-import com.kazemieh.designsystem.libdesign.buttons.normal.small.StateSmallButton
-import com.kazemieh.designsystem.libdesign.buttons.normal.small.StyleSmallButton
 import com.kazemieh.designsystem.libdesign.databinding.ButtonBinding
 import com.kazemieh.designsystem.libdesign.util.dpToPx
 import java.util.Arrays
@@ -53,9 +50,9 @@ abstract class BaseButton @JvmOverloads constructor(
 
     abstract var buttonTypeArray: TypedArray
 
-    abstract var configuration: ConfigurationSmallButton
-    abstract var style: StyleSmallButton
-    abstract var state: StateSmallButton
+    abstract var configuration: ConfigurationButton
+    abstract var style: StyleButton
+    abstract var state: StateButton
 
     protected val binding: ButtonBinding
     protected val shape: GradientDrawable
