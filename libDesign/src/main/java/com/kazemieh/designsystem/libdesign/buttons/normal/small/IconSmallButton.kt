@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewOutlineProvider
 import androidx.core.view.isVisible
+import com.kazemieh.designsystem.libdesign.buttons.base.BaseButton
 import com.kazemieh.designsystem.libdesign.buttons.base.CornerRadius
 import com.kazemieh.designsystem.libdesign.buttons.base.StateButton
 import com.kazemieh.designsystem.libdesign.buttons.base.StyleButton
@@ -19,7 +20,7 @@ class IconSmallButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet?,
     defStyleAttr: Int = 0,
-) : SmallButton(
+) : BaseButton(
     context, attrs, defStyleAttr
 ) {
 
@@ -48,7 +49,7 @@ class IconSmallButton @JvmOverloads constructor(
 
     }
 
-    override fun invalidateLayout() {
+     override fun invalidateLayout() {
         super.invalidateLayout()
         if (style == StyleButton.ELEVATED) {
 

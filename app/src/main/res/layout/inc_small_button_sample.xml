@@ -47,22 +47,22 @@
                 tools:ignore="MissingDefaultResource"
                 tools:visibility="visible">
 
-                <com.kazemieh.designsystem.libdesign.buttons.normal.small.SmallButton
+                <com.kazemieh.designsystem.libdesign.buttons.base.BaseButton
                     android:id="@+id/smallButtonXml"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
                     android:paddingHorizontal="16dp"
-                    app:configurationSmallButton="primary"
+                    app:configurationButton="primary"
                     app:leadingIcon="@drawable/icon"
                     app:myCornerRadius="eight"
-                    app:stateSmallButton="enable"
-                    app:styleSmallButton="field"
+                    app:stateButton="enable"
+                    app:styleButton="field"
                     app:text="small button xml"
                     app:trailingIcon="@drawable/icon" />
 
-                <com.kazemieh.designsystem.libdesign.buttons.normal.small.SmallButton
+                <com.kazemieh.designsystem.libdesign.buttons.base.BaseButton
                     android:id="@+id/smallButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

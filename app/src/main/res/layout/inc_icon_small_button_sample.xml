@@ -55,11 +55,11 @@
                     android:layout_marginBottom="8dp"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="8dp"
-                    app:configurationSmallButton="primary"
+                    app:configurationButton="primary"
                     app:leadingIcon="@drawable/icon"
                     app:myCornerRadius="eight"
-                    app:stateSmallButton="enable"
-                    app:styleSmallButton="field" />
+                    app:stateButton="enable"
+                    app:styleButton="field" />
 
                 <com.kazemieh.designsystem.libdesign.buttons.normal.small.IconSmallButton
                     android:id="@+id/iconSmallButton"
