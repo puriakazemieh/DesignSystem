@@ -1,4 +1,4 @@
-package com.kazemieh.designsystem.libdesign.buttons.base
+package com.kazemieh.designsystem.libdesign
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -21,7 +21,6 @@ import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import com.github.ybq.android.spinkit.sprite.Sprite
 import com.github.ybq.android.spinkit.style.ThreeBounce
-import com.kazemieh.designsystem.libdesign.R
 import com.kazemieh.designsystem.libdesign.databinding.ButtonBinding
 import com.kazemieh.designsystem.libdesign.util.dpToPx
 import com.kazemieh.designsystem.libdesign.util.dpToPxInt

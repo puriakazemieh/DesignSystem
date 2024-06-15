@@ -1,4 +1,4 @@
-package com.kazemieh.designsystem.libdesign.buttons.base
+package com.kazemieh.designsystem.libdesign
 
 import android.content.Context
 import com.kazemieh.designsystem.libdesign.color.ColorsPalletImp

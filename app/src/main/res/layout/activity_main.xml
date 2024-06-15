@@ -12,7 +12,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -22,14 +23,76 @@
                 android:padding="8dp">
 
 
-                <include
-                    android:id="@+id/incSmallButtonSample"
-                    layout="@layout/inc_small_button_sample" />
+                <com.kazemieh.designsystem.libdesign.buttons.base.BaseButton
+                    android:id="@+id/smallButtonXml"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:paddingHorizontal="16dp"
+                    app:configurationButton="primary"
+                    app:leadingIcon="@drawable/icon"
+                    app:myCornerRadius="eight"
+                    app:stateButton="enable"
+                    app:styleButton="field"
+                    app:text="small button xml"
+                    app:trailingIcon="@drawable/icon" />
 
-<!--                <include-->
-<!--                    android:id="@+id/incIconSmallButtonSample"-->
-<!--                    layout="@layout/inc_icon_small_button_sample" />-->
+                <com.kazemieh.designsystem.libdesign.buttons.base.BaseButton
+                    android:id="@+id/smallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:paddingHorizontal="16dp" />
 
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchRoundnessSmallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="20dp"
+                    android:text="@string/roundness" />
+
+                <Spinner
+                    android:id="@+id/spinnerConfigurationSmallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="20dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerStyleSmallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="20dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerStateSmallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="20dp" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchShowLeadingIconSmallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="20dp"
+                    android:text="@string/show_leading_icon" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchShowTrailingIconSmallButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="20dp"
+                    android:text="@string/show_trailing_icon" />
             </LinearLayout>
 
         </ScrollView>
