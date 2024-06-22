@@ -32,7 +32,7 @@ import java.util.Arrays
 
 
 @SuppressLint("ClickableViewAccessibility", "CustomViewStyleable")
-class BaseButton @JvmOverloads constructor(
+class Button @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet?,
     defStyleAttr: Int = 0

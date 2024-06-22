@@ -211,9 +211,7 @@ class MainActivity : AppCompatActivity() {
         @SuppressLint("UseCompatLoadingForDrawables")
         fun isCheckedSwitch(isCheck: Boolean) {
             if (isCheck) binding.smallButton.trailingIcon =
-                binding.root.context.getDrawable(
-                    R.drawable.icon
-                )
+                binding.root.context.getDrawable(R.drawable.icon)
             else binding.smallButton.trailingIcon = null
         }
         isCheckedSwitch(binding.switchShowTrailingIconSmallButton.isChecked)

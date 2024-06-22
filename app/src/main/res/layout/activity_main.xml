@@ -23,7 +23,7 @@
                 android:padding="8dp">
 
 
-                <com.kazemieh.designsystem.libdesign.buttons.base.BaseButton
+                <com.kazemieh.designsystem.libdesign.Button
                     android:id="@+id/smallButtonXml"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                     app:text="small button xml"
                     app:trailingIcon="@drawable/icon" />
 
-                <com.kazemieh.designsystem.libdesign.buttons.base.BaseButton
+                <com.kazemieh.designsystem.libdesign.Button
                     android:id="@+id/smallButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
