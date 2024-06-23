@@ -26,10 +26,10 @@
                 <com.kazemieh.designsystem.libdesign.Button
                     android:id="@+id/smallButtonXml"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
-                    android:paddingHorizontal="16dp"
+                    android:layout_marginHorizontal="16dp"
                     app:configurationButton="primary"
                     app:leadingIcon="@drawable/icon"
                     app:myCornerRadius="eight"
