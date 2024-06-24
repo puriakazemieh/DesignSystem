@@ -212,6 +212,8 @@ class Button @JvmOverloads constructor(
     private var borderColor = myColors.border
     private var tintEnableColor = myColors.tintEnable
     private var normalColor = myColors.normal
+    private var defaultWidthIcon = dpToPxInt(20)
+    private var defaultHeightIcon = dpToPxInt(20)
 
     init {
         clickListener()
@@ -333,73 +335,24 @@ class Button @JvmOverloads constructor(
 
     private fun setImageDrawableLeadingIcon(value: Drawable?) {
         binding.leadingIcon.setImageDrawable(value)
-        if (value != null) {
-            binding.leadingIcon.marginLayoutParams {
-                width = dpToPxInt(20)
-                height = dpToPxInt(20)
-                marginEnd = dpToPxInt(2)
-            }
-        } else {
-            binding.leadingIcon.marginLayoutParams {
-                width = dpToPxInt(0)
-                height = dpToPxInt(0)
-                marginStart = dpToPxInt(0)
-            }
-        }
+        invalidateLayout()
     }
 
     private fun setImageDrawableTrailingIcon(value: Drawable?) {
-        Log.d("949494", "setImageDrawableTrailingIcon: $text ${this.hashCode()}")
-        if (text != null) {
-            Log.d("949494", "setImageDrawableTrailingIcon: 1  $text ${this.hashCode()}")
-            binding.trailingIcon.setImageDrawable(value)
-            if (value != null) {
-                binding.trailingIcon.marginLayoutParams {
-                    width = dpToPxInt(20)
-                    height = dpToPxInt(20)
-                    marginStart = dpToPxInt(2)
-                }
-            } else {
-                binding.trailingIcon.marginLayoutParams {
-                    width = dpToPxInt(0)
-                    height = dpToPxInt(0)
-                    marginStart = dpToPxInt(0)
-                }
-            }
-        }
-//        } else {
-//            binding.trailingIcon.setImageDrawable(null)
-//        }
+        binding.trailingIcon.setImageDrawable(value)
+        invalidateLayout()
     }
 
     private fun handleText() {
         binding.text.text = text
-        if (text != null) {
-            binding.text.isVisible = true
-            binding.text.setPaddingRelative(end = dpToPxInt(4), start = dpToPxInt(4))
-            binding.mainLayout.setPaddingRelative(
-                end = dpToPxInt(16),
-                start = dpToPxInt(16),
-                top = dpToPxInt(10),
-                bottom = dpToPxInt(10)
-            )
-        } else {
-            binding.text.setMargin(0)
-            binding.text.isVisible = false
-            binding.leadingIcon.marginLayoutParams {
-                width = dpToPxInt(24)
-                height = dpToPxInt(24)
-                marginEnd = dpToPxInt(0)
-                marginStart = dpToPxInt(0)
-            }
-            binding.mainLayout.setMargin(4)
-            binding.mainLayout.setPaddingRelative(padding = 0)
-        }
+        invalidateLayout()
     }
 
     private fun invalidateLayout() {
         setStroke()
-
+        setPaddingLeadingIcon()
+        setPaddingTrailingIcon()
+        setPaddingText()
         if (style == StyleButton.ELEVATED) {
 
             if (state == StateButton.DISABLE) {
@@ -460,6 +413,30 @@ class Button @JvmOverloads constructor(
         requestLayout()
     }
 
+    private fun setPaddingText() {
+        if (text != null) {
+            binding.text.isVisible = true
+            binding.text.setPaddingRelative(end = dpToPxInt(4), start = dpToPxInt(4))
+            binding.mainLayout.setPaddingRelative(
+                end = dpToPxInt(16),
+                start = dpToPxInt(16),
+                top = dpToPxInt(10),
+                bottom = dpToPxInt(10)
+            )
+        } else {
+            binding.text.setMargin(0)
+            binding.text.isVisible = false
+            binding.leadingIcon.marginLayoutParams {
+                width = dpToPxInt(24)
+                height = dpToPxInt(24)
+                marginEnd = dpToPxInt(0)
+                marginStart = dpToPxInt(0)
+            }
+            binding.mainLayout.setMargin(4)
+            binding.mainLayout.setPaddingRelative(padding = 0)
+        }
+    }
+
     private fun setStroke() {
         when (style) {
             StyleButton.TONAL -> {
@@ -477,6 +454,22 @@ class Button @JvmOverloads constructor(
             else -> {
                 shape.setStroke(0, borderColor)
             }
+        }
+    }
+
+    private fun setPaddingLeadingIcon(){
+        binding.leadingIcon.marginLayoutParams {
+            width = if(leadingIcon != null) defaultWidthIcon else dpToPxInt(0)
+            height = if(leadingIcon != null) defaultHeightIcon else dpToPxInt(0)
+            marginEnd = if(leadingIcon != null) dpToPxInt(2) else dpToPxInt(0)
+        }
+    }
+
+    private fun setPaddingTrailingIcon(){
+        binding.trailingIcon.marginLayoutParams {
+            width = if(trailingIcon != null) defaultWidthIcon else dpToPxInt(0)
+            height = if(trailingIcon != null) defaultHeightIcon else dpToPxInt(0)
+            marginStart = if(trailingIcon != null) dpToPxInt(2) else dpToPxInt(0)
         }
     }
 
