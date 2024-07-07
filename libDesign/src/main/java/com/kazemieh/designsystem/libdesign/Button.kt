@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.TypedArray
+import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
@@ -11,10 +12,8 @@ import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.StateListDrawable
 import android.graphics.drawable.shapes.RoundRectShape
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import android.widget.FrameLayout
 import android.widget.ProgressBar
@@ -27,8 +26,8 @@ import com.kazemieh.designsystem.libdesign.util.dpToPxInt
 import com.kazemieh.designsystem.libdesign.util.marginLayoutParams
 import com.kazemieh.designsystem.libdesign.util.setMargin
 import com.kazemieh.designsystem.libdesign.util.setPaddingRelative
-import com.kazemieh.designsystem.libdesign.util.updateLayoutParam
 import java.util.Arrays
+import kotlin.math.min
 
 
 @SuppressLint("ClickableViewAccessibility", "CustomViewStyleable")
@@ -236,6 +235,76 @@ class Button @JvmOverloads constructor(
 
     }
 
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val desiredWidth = dpToPxInt(180)
+        val desiredHeight = dpToPxInt(40)
+
+        val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+        val widthSize = MeasureSpec.getSize(widthMeasureSpec)
+        val heightMode = MeasureSpec.getMode(heightMeasureSpec)
+        val heightSize = MeasureSpec.getSize(heightMeasureSpec)
+
+
+        //Measure Width
+        val width = when (widthMode) {
+            MeasureSpec.EXACTLY -> { // number 50dp
+                //Must be this size
+                widthSize
+            }
+
+            MeasureSpec.AT_MOST -> { // match_parent
+                //Can't be bigger than...
+                min(desiredWidth.toDouble(), widthSize.toDouble()).toInt()
+            }
+
+            MeasureSpec.UNSPECIFIED -> { // wrap_content
+                //Be whatever you want
+                desiredWidth
+            }
+
+            else -> {
+                //Be whatever you want
+                desiredWidth
+            }
+        }
+
+
+        //Measure Height
+        val height = when (heightMode) {
+            MeasureSpec.EXACTLY -> {// number 50dp
+                //Must be this size
+                heightSize
+            }
+
+            MeasureSpec.AT_MOST -> {// match_parent
+                //Can't be bigger than...
+                min(desiredHeight.toDouble(), heightSize.toDouble()).toInt()
+            }
+
+            MeasureSpec.UNSPECIFIED -> { // wrap_content
+                //Be whatever you want
+                desiredHeight
+            }
+
+            else -> {
+                //Be whatever you want
+                desiredHeight
+            }
+        }
+
+
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+        //MUST CALL THIS
+        measureChildren(
+            MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+            MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
+        )
+        setMeasuredDimension(width, height)
+    }
+
+
     private fun setColor() {
         normalColor = myColors.normal
         disableColor = myColors.disable
@@ -359,27 +428,27 @@ class Button @JvmOverloads constructor(
                 binding.mainLayout.elevation = dpToPx(0)
                 binding.mainLayout.setMargin(0)
 
-                binding.mainLayout.updateLayoutParam {
-                    height = dpToPxInt(40)
-                    if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
-                }
-                binding.cl.marginLayoutParams {
-                    height = dpToPxInt(40)
-                    if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
-                }
+//                binding.mainLayout.updateLayoutParam {
+//                    height = dpToPxInt(40)
+//                    if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
+//                }
+//                binding.cl.marginLayoutParams {
+//                    height = dpToPxInt(40)
+//                    if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
+//                }
             } else {
                 binding.mainLayout.elevation = dpToPx(2)
                 binding.mainLayout.outlineProvider = ViewOutlineProvider.BACKGROUND
                 binding.mainLayout.setMargin(2)
 
-                binding.mainLayout.updateLayoutParam {
-                    height = dpToPxInt(36)
-                    if (text == null) width = dpToPxInt(36) else ViewGroup.LayoutParams.MATCH_PARENT
-                }
-                binding.cl.marginLayoutParams {
-                    height = dpToPxInt(40)
-                    if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
-                }
+//                binding.mainLayout.updateLayoutParam {
+//                    height = dpToPxInt(36)
+//                    if (text == null) width = dpToPxInt(36) else ViewGroup.LayoutParams.MATCH_PARENT
+//                }
+//                binding.cl.marginLayoutParams {
+//                    height = dpToPxInt(40)
+//                    if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
+//                }
 
             }
 
@@ -388,14 +457,14 @@ class Button @JvmOverloads constructor(
             binding.mainLayout.elevation = dpToPx(0)
             binding.mainLayout.setMargin(0)
 
-            binding.mainLayout.updateLayoutParam {
-                height = dpToPxInt(40)
-                if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
-            }
-            binding.cl.marginLayoutParams {
-                height = dpToPxInt(40)
-                if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
-            }
+//            binding.mainLayout.updateLayoutParam {
+//                height = dpToPxInt(40)
+//                if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
+//            }
+//            binding.cl.marginLayoutParams {
+//                height = dpToPxInt(40)
+//                if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
+//            }
         }
 
         if (state == StateButton.LOADING) {
@@ -414,27 +483,27 @@ class Button @JvmOverloads constructor(
     }
 
     private fun setPaddingText() {
-        if (text != null) {
-            binding.text.isVisible = true
-            binding.text.setPaddingRelative(end = dpToPxInt(4), start = dpToPxInt(4))
-            binding.mainLayout.setPaddingRelative(
-                end = dpToPxInt(16),
-                start = dpToPxInt(16),
-                top = dpToPxInt(10),
-                bottom = dpToPxInt(10)
-            )
-        } else {
-            binding.text.setMargin(0)
-            binding.text.isVisible = false
-            binding.leadingIcon.marginLayoutParams {
-                width = dpToPxInt(24)
-                height = dpToPxInt(24)
-                marginEnd = dpToPxInt(0)
-                marginStart = dpToPxInt(0)
-            }
-            binding.mainLayout.setMargin(4)
-            binding.mainLayout.setPaddingRelative(padding = 0)
-        }
+//        if (text != null) {
+//            binding.text.isVisible = true
+//            binding.text.setPaddingRelative(end = dpToPxInt(4), start = dpToPxInt(4))
+//            binding.mainLayout.setPaddingRelative(
+//                end = dpToPxInt(16),
+//                start = dpToPxInt(16),
+//                top = dpToPxInt(10),
+//                bottom = dpToPxInt(10)
+//            )
+//        } else {
+//            binding.text.setMargin(0)
+//            binding.text.isVisible = false
+//            binding.leadingIcon.marginLayoutParams {
+//                width = dpToPxInt(24)
+//                height = dpToPxInt(24)
+//                marginEnd = dpToPxInt(0)
+//                marginStart = dpToPxInt(0)
+//            }
+//            binding.mainLayout.setMargin(4)
+//            binding.mainLayout.setPaddingRelative(padding = 0)
+//        }
     }
 
     private fun setStroke() {
@@ -457,19 +526,19 @@ class Button @JvmOverloads constructor(
         }
     }
 
-    private fun setPaddingLeadingIcon(){
+    private fun setPaddingLeadingIcon() {
         binding.leadingIcon.marginLayoutParams {
-            width = if(leadingIcon != null) defaultWidthIcon else dpToPxInt(0)
-            height = if(leadingIcon != null) defaultHeightIcon else dpToPxInt(0)
-            marginEnd = if(leadingIcon != null) dpToPxInt(2) else dpToPxInt(0)
+            width = if (leadingIcon != null) defaultWidthIcon else dpToPxInt(0)
+            height = if (leadingIcon != null) defaultHeightIcon else dpToPxInt(0)
+            marginEnd = if (leadingIcon != null) dpToPxInt(2) else dpToPxInt(0)
         }
     }
 
-    private fun setPaddingTrailingIcon(){
+    private fun setPaddingTrailingIcon() {
         binding.trailingIcon.marginLayoutParams {
-            width = if(trailingIcon != null) defaultWidthIcon else dpToPxInt(0)
-            height = if(trailingIcon != null) defaultHeightIcon else dpToPxInt(0)
-            marginStart = if(trailingIcon != null) dpToPxInt(2) else dpToPxInt(0)
+            width = if (trailingIcon != null) defaultWidthIcon else dpToPxInt(0)
+            height = if (trailingIcon != null) defaultHeightIcon else dpToPxInt(0)
+            marginStart = if (trailingIcon != null) dpToPxInt(2) else dpToPxInt(0)
         }
     }
 
