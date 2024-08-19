@@ -15,3 +15,7 @@ enum class StyleButton(val styleId: Int) {
 enum class StateButton(val stateId: Int) {
     ENABLE(0), DISABLE(1), LOADING(2)
 }
+
+enum class ButtonType(val typeId: Int) {
+    NORMAL(0), ICON(1)
+}

@@ -41,10 +41,6 @@ class Button @JvmOverloads constructor(
     defStyleAttr
 ) {
 
-    companion object {
-        val TAG = "BaseButton"
-    }
-
     private val inflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -69,6 +65,29 @@ class Button @JvmOverloads constructor(
         threeBounce.color = tintEnableColor
         binding.mainLayout.addView(this)
     }
+
+    var buttonType: ButtonType = ButtonType.NORMAL
+        set(value) {
+            field = value
+            state()
+        }
+
+    private var buttonTypeId = ButtonType.NORMAL.typeId
+        set(value) {
+            field = value
+            buttonType = when (value) {
+                ButtonType.NORMAL.typeId -> {
+                    ButtonType.NORMAL
+                }
+
+                ButtonType.ICON.typeId -> {
+                    ButtonType.ICON
+                }
+                else -> {
+                    ButtonType.NORMAL
+                }
+            }
+        }
 
     var state: StateButton = StateButton.ENABLE
         set(value) {
@@ -227,6 +246,7 @@ class Button @JvmOverloads constructor(
         setTrailingIcon()
         setCornerRadius()
         setState()
+        setTypeButton()
         setStyle()
         setConfiguration()
 
@@ -655,12 +675,18 @@ class Button @JvmOverloads constructor(
         )
     }
 
+    private fun setTypeButton() {
+        buttonTypeId = typeArray.getInt(
+            R.styleable.MyButton_buttonType,
+            ButtonType.NORMAL.typeId
+        )
+    }
+
     private fun setStyle() {
         styleId = typeArray.getInt(
             R.styleable.MyButton_styleButton,
             StyleButton.FIELD.styleId
         )
-
     }
 
     private fun setConfiguration() {
