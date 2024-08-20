@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.TypedArray
-import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
@@ -14,7 +13,6 @@ import android.graphics.drawable.shapes.RoundRectShape
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.ViewOutlineProvider
 import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
@@ -24,8 +22,6 @@ import com.kazemieh.designsystem.libdesign.databinding.ButtonBinding
 import com.kazemieh.designsystem.libdesign.util.dpToPx
 import com.kazemieh.designsystem.libdesign.util.dpToPxInt
 import com.kazemieh.designsystem.libdesign.util.marginLayoutParams
-import com.kazemieh.designsystem.libdesign.util.setMargin
-import com.kazemieh.designsystem.libdesign.util.setPaddingRelative
 import java.util.Arrays
 import kotlin.math.min
 
@@ -46,30 +42,42 @@ class Button @JvmOverloads constructor(
 
     private var binding: ButtonBinding = ButtonBinding.inflate(inflater, this, true)
 
-    private val shape: GradientDrawable = GradientDrawable().apply {
-        shape = GradientDrawable.RECTANGLE
+    private val shape: GradientDrawable by lazy {
+        GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+        }
     }
+
     private val typeArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.MyButton)
-    private val threeBounce: Sprite = ThreeBounce()
+    private val threeBounce: Sprite by lazy { ThreeBounce() }
 
     private lateinit var onClickListener: () -> Unit
     private lateinit var onLongClickListener: () -> Unit
     private lateinit var onTouchListener: (motionEvent: MotionEvent?) -> Boolean
 
-    private val progressBar: ProgressBar = ProgressBar(context).apply {
-        isVisible = state == StateButton.LOADING
-        binding.text.isVisible = state != StateButton.LOADING
-        binding.trailingIcon.isVisible = state != StateButton.LOADING
-        binding.leadingIcon.isVisible = state != StateButton.LOADING
-        indeterminateDrawable = threeBounce
-        threeBounce.color = tintEnableColor
-        binding.mainLayout.addView(this)
+    private val progressBar: ProgressBar? by lazy {
+        ProgressBar(context).apply {
+            isVisible = state == StateButton.LOADING
+            binding.text.isVisible = state != StateButton.LOADING
+            binding.trailingIcon.isVisible = state != StateButton.LOADING
+            binding.leadingIcon.isVisible = state != StateButton.LOADING
+            indeterminateDrawable = threeBounce
+            threeBounce.color = tintEnableColor
+            binding.mainLayout.addView(this)
+        }
     }
 
     var buttonType: ButtonType = ButtonType.NORMAL
         set(value) {
             field = value
-            state()
+            if (value == ButtonType.NORMAL) {
+                binding.trailingIcon.isVisible = true
+                binding.text.isVisible = true
+            } else {
+                binding.trailingIcon.isVisible = false
+                binding.text.isVisible = false
+            }
+            requestLayout()
         }
 
     private var buttonTypeId = ButtonType.NORMAL.typeId
@@ -83,6 +91,7 @@ class Button @JvmOverloads constructor(
                 ButtonType.ICON.typeId -> {
                     ButtonType.ICON
                 }
+
                 else -> {
                     ButtonType.NORMAL
                 }
@@ -220,7 +229,12 @@ class Button @JvmOverloads constructor(
         set(value) {
             field = value
             setColor()
-            invalidateLayout()
+            setStroke()
+            threeBounce.color = tintEnableColor
+            binding.mainLayout.background = stateListDrawable()
+            binding.text.setTextColor(getStateColorTint())
+            binding.trailingIcon.imageTintList = getStateColorTint()
+            binding.leadingIcon.imageTintList = getStateColorTint()
         }
 
     private var disableColor = myColors.disable
@@ -255,9 +269,9 @@ class Button @JvmOverloads constructor(
 
     }
 
-
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val desiredWidth = dpToPxInt(180)
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        val desiredWidth = dpToPxInt(if (buttonType == ButtonType.NORMAL) 180 else 40)
         val desiredHeight = dpToPxInt(40)
 
         val widthMode = MeasureSpec.getMode(widthMeasureSpec)
@@ -265,20 +279,19 @@ class Button @JvmOverloads constructor(
         val heightMode = MeasureSpec.getMode(heightMeasureSpec)
         val heightSize = MeasureSpec.getSize(heightMeasureSpec)
 
-
         //Measure Width
         val width = when (widthMode) {
-            MeasureSpec.EXACTLY -> { // number 50dp
+            MeasureSpec.EXACTLY -> { // number 50dp or match_parent
                 //Must be this size
                 widthSize
             }
 
-            MeasureSpec.AT_MOST -> { // match_parent
+            MeasureSpec.AT_MOST -> { // wrap_content
                 //Can't be bigger than...
                 min(desiredWidth.toDouble(), widthSize.toDouble()).toInt()
             }
 
-            MeasureSpec.UNSPECIFIED -> { // wrap_content
+            MeasureSpec.UNSPECIFIED -> { //
                 //Be whatever you want
                 desiredWidth
             }
@@ -289,20 +302,19 @@ class Button @JvmOverloads constructor(
             }
         }
 
-
         //Measure Height
         val height = when (heightMode) {
-            MeasureSpec.EXACTLY -> {// number 50dp
+            MeasureSpec.EXACTLY -> { // number 50dp or match_parent
                 //Must be this size
                 heightSize
             }
 
-            MeasureSpec.AT_MOST -> {// match_parent
+            MeasureSpec.AT_MOST -> {// wrap_content
                 //Can't be bigger than...
                 min(desiredHeight.toDouble(), heightSize.toDouble()).toInt()
             }
 
-            MeasureSpec.UNSPECIFIED -> { // wrap_content
+            MeasureSpec.UNSPECIFIED -> {
                 //Be whatever you want
                 desiredHeight
             }
@@ -314,16 +326,15 @@ class Button @JvmOverloads constructor(
         }
 
 
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-        //MUST CALL THIS
+        // button
         measureChildren(
             MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
             MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
         )
+        // cl
         setMeasuredDimension(width, height)
     }
-
 
     private fun setColor() {
         normalColor = myColors.normal
@@ -392,7 +403,7 @@ class Button @JvmOverloads constructor(
         val corner = dpToPx(value)
         shape.cornerRadii =
             floatArrayOf(corner, corner, corner, corner, corner, corner, corner, corner)
-        invalidateLayout()
+        binding.mainLayout.background = stateListDrawable()
     }
 
     private fun getRippleColor(color: Int): Drawable {
@@ -424,107 +435,48 @@ class Button @JvmOverloads constructor(
 
     private fun setImageDrawableLeadingIcon(value: Drawable?) {
         binding.leadingIcon.setImageDrawable(value)
-        invalidateLayout()
     }
 
     private fun setImageDrawableTrailingIcon(value: Drawable?) {
         binding.trailingIcon.setImageDrawable(value)
-        invalidateLayout()
     }
 
     private fun handleText() {
         binding.text.text = text
-        invalidateLayout()
     }
 
-    private fun invalidateLayout() {
-        setStroke()
-        setPaddingLeadingIcon()
-        setPaddingTrailingIcon()
-        setPaddingText()
-        if (style == StyleButton.ELEVATED) {
-
-            if (state == StateButton.DISABLE) {
-                binding.mainLayout.elevation = dpToPx(0)
-                binding.mainLayout.setMargin(0)
-
-//                binding.mainLayout.updateLayoutParam {
-//                    height = dpToPxInt(40)
-//                    if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
-//                }
-//                binding.cl.marginLayoutParams {
-//                    height = dpToPxInt(40)
-//                    if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
-//                }
-            } else {
-                binding.mainLayout.elevation = dpToPx(2)
-                binding.mainLayout.outlineProvider = ViewOutlineProvider.BACKGROUND
-                binding.mainLayout.setMargin(2)
-
-//                binding.mainLayout.updateLayoutParam {
-//                    height = dpToPxInt(36)
-//                    if (text == null) width = dpToPxInt(36) else ViewGroup.LayoutParams.MATCH_PARENT
-//                }
-//                binding.cl.marginLayoutParams {
-//                    height = dpToPxInt(40)
-//                    if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
-//                }
-
-            }
-
-
-        } else {
-            binding.mainLayout.elevation = dpToPx(0)
-            binding.mainLayout.setMargin(0)
-
-//            binding.mainLayout.updateLayoutParam {
-//                height = dpToPxInt(40)
-//                if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
-//            }
-//            binding.cl.marginLayoutParams {
-//                height = dpToPxInt(40)
-//                if (text == null) width = dpToPxInt(40) else ViewGroup.LayoutParams.MATCH_PARENT
-//            }
-        }
-
-        if (state == StateButton.LOADING) {
-            binding.mainLayout.setPaddingRelative(padding = 0)
-        }
-
-        threeBounce.color = tintEnableColor
-        binding.text.setTextColor(getStateColorTint())
-        binding.trailingIcon.imageTintList = getStateColorTint()
-        binding.leadingIcon.imageTintList = getStateColorTint()
-        binding.mainLayout.background = stateListDrawable()
-
-
-
-        requestLayout()
-    }
-
-    private fun setPaddingText() {
-//        if (text != null) {
-//            binding.text.isVisible = true
-//            binding.text.setPaddingRelative(end = dpToPxInt(4), start = dpToPxInt(4))
-//            binding.mainLayout.setPaddingRelative(
-//                end = dpToPxInt(16),
-//                start = dpToPxInt(16),
-//                top = dpToPxInt(10),
-//                bottom = dpToPxInt(10)
-//            )
+//    private fun invalidateLayout() {
+//        setStroke()
+//        if (buttonType == ButtonType.NORMAL) {
+//            setPaddingLeadingIcon()
+//            setPaddingTrailingIcon()
 //        } else {
-//            binding.text.setMargin(0)
-//            binding.text.isVisible = false
-//            binding.leadingIcon.marginLayoutParams {
-//                width = dpToPxInt(24)
-//                height = dpToPxInt(24)
-//                marginEnd = dpToPxInt(0)
-//                marginStart = dpToPxInt(0)
+//            binding.trailingIcon.setImageDrawable(null)
+//            binding.text.text = null
+//        }
+//        if (style == StyleButton.ELEVATED) {
+//            if (state == StateButton.DISABLE) {
+//                binding.mainLayout.elevation = dpToPx(0)
+//                binding.mainLayout.setMargin(0)
+//            } else {
+//                binding.mainLayout.elevation = dpToPx(2)
+//                binding.mainLayout.outlineProvider = ViewOutlineProvider.BACKGROUND
+//                binding.mainLayout.setMargin(2)
+//
 //            }
-//            binding.mainLayout.setMargin(4)
+//        } else {
+//            binding.mainLayout.elevation = dpToPx(0)
+//            binding.mainLayout.setMargin(0)
+//        }
+//        if (state == StateButton.LOADING) {
 //            binding.mainLayout.setPaddingRelative(padding = 0)
 //        }
-    }
+//
+//        threeBounce.color = tintEnableColor
+//        binding.mainLayout.background = stateListDrawable()
+//
+//        requestLayout()
+//    }
 
     private fun setStroke() {
         when (style) {
@@ -611,10 +563,12 @@ class Button @JvmOverloads constructor(
         when (state) {
             StateButton.ENABLE -> {
 
-                binding.text.isVisible = true
-                binding.trailingIcon.isVisible = true
-                binding.leadingIcon.isVisible = true
+                if (buttonType == ButtonType.NORMAL) {
+                    binding.text.isVisible = true
+                    binding.trailingIcon.isVisible = true
+                }
 
+                binding.leadingIcon.isVisible = true
                 binding.text.isEnabled = true
                 binding.mainLayout.isEnabled = true
                 binding.trailingIcon.isEnabled = true
@@ -625,10 +579,12 @@ class Button @JvmOverloads constructor(
 
             StateButton.DISABLE -> {
 
-                binding.text.isVisible = true
-                binding.trailingIcon.isVisible = true
-                binding.leadingIcon.isVisible = true
+                if (buttonType == ButtonType.NORMAL) {
+                    binding.text.isVisible = true
+                    binding.trailingIcon.isVisible = true
+                }
 
+                binding.leadingIcon.isVisible = true
                 binding.text.isEnabled = false
                 binding.mainLayout.isEnabled = false
                 binding.trailingIcon.isEnabled = false
