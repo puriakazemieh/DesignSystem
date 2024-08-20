@@ -24,15 +24,32 @@
 
 
                 <com.kazemieh.designsystem.libdesign.Button
-                    android:id="@+id/smallButtonXml"
+                    android:id="@+id/smallButtonXml_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginHorizontal="16dp"
                     app:configurationButton="primary"
                     app:leadingIcon="@drawable/icon"
                     app:myCornerRadius="eight"
+                    app:stateButton="enable"
+                    app:styleButton="field"
+                    app:buttonType="normal"
+                    app:text="small button xml"
+                    app:trailingIcon="@drawable/icon" />
+
+                <com.kazemieh.designsystem.libdesign.Button
+                    android:id="@+id/smallButtonXml_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    app:configurationButton="primary"
+                    app:leadingIcon="@drawable/icon"
+                    app:myCornerRadius="hundred"
+                    app:buttonType="Icon"
                     app:stateButton="enable"
                     app:styleButton="field"
                     app:text="small button xml"
@@ -40,11 +57,11 @@
 
                 <com.kazemieh.designsystem.libdesign.Button
                     android:id="@+id/smallButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
-                    android:paddingHorizontal="16dp" />
+                    android:layout_marginHorizontal="16dp" />
 
                 <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/switchRoundnessSmallButton"
@@ -93,6 +110,16 @@
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="20dp"
                     android:text="@string/show_trailing_icon" />
+
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchTypeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="20dp"
+                    android:text="@string/type_button" />
             </LinearLayout>
 
         </ScrollView>

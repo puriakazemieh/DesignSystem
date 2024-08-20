@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import com.kazemieh.designsystem.libdesign.ButtonType
 import com.kazemieh.designsystem.libdesign.ConfigurationButton
 import com.kazemieh.designsystem.libdesign.CornerRadius
 import com.kazemieh.designsystem.libdesign.StateButton
@@ -26,6 +27,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun smallButtonConfig() {
+
+        // type
+        typeConfig()
 
         // corner
         cornerRadiusConfig()
@@ -49,8 +53,20 @@ class MainActivity : AppCompatActivity() {
             Log.d("949494", "smallButtonConfig: clicked")
         }
         binding.smallButton.text =
-            binding.root.resources.getString(R.string.small_button)
+            binding.root.resources.getString(R.string.button_name)
 
+    }
+
+    private fun typeConfig() {
+        fun isCheckedSwitch(isCheck: Boolean) {
+            if (isCheck) binding.smallButton.buttonType =
+                ButtonType.NORMAL
+            else binding.smallButton.buttonType = ButtonType.ICON
+        }
+        isCheckedSwitch(binding.switchTypeButton.isChecked)
+        binding.switchTypeButton.setOnCheckedChangeListener { buttonView, isChecked ->
+            isCheckedSwitch(isChecked)
+        }
     }
 
     private fun cornerRadiusConfig() {
