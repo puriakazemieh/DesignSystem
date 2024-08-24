@@ -27,7 +27,7 @@ class ColorsPalletButtonImp(
             }
 
             StyleButton.ELEVATED -> {
-                onPrimary
+                surface
             }
         }
 
@@ -46,7 +46,7 @@ class ColorsPalletButtonImp(
             }
 
             StyleButton.ELEVATED -> {
-                onPrimary
+                surface
             }
         }
 

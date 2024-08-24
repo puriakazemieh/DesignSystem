@@ -23,6 +23,15 @@
                 android:padding="8dp">
 
 
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchDarkLightMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="20dp"
+                    android:text="@string/switchDarkLightMode" />
+
                 <com.kazemieh.designsystem.libdesign.Button
                     android:id="@+id/smallButtonXml_1"
                     android:layout_width="match_parent"
@@ -34,7 +43,7 @@
                     app:leadingIcon="@drawable/icon"
                     app:myCornerRadius="eight"
                     app:stateButton="enable"
-                    app:styleButton="field"
+                    app:styleButton="elevated"
                     app:buttonType="normal"
                     app:text="small button xml"
                     app:trailingIcon="@drawable/icon" />

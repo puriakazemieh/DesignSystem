@@ -5,6 +5,7 @@
     <string name="button_name">button</string>
     <string name="icon_small_button">Icon Small button</string>
     <string name="roundness">Roundness</string>
+    <string name="switchDarkLightMode">switchDarkLightMode</string>
     <string name="type_button">Type Button</string>
     <string name="show_leading_icon">Show Leading Icon</string>
     <string name="show_trailing_icon">show Trailing Icon</string>

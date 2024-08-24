@@ -1,12 +1,14 @@
 package com.kazemieh.designsystem.sample
 
 import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.kazemieh.designsystem.libdesign.ButtonType
 import com.kazemieh.designsystem.libdesign.ConfigurationButton
 import com.kazemieh.designsystem.libdesign.CornerRadius
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        darkModeConfig()
 
         smallButtonConfig()
     }
@@ -56,7 +60,19 @@ class MainActivity : AppCompatActivity() {
             binding.root.resources.getString(R.string.button_name)
 
     }
-
+    private fun darkModeConfig() {
+        binding.switchDarkLightMode.isChecked =
+            (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) != Configuration.UI_MODE_NIGHT_NO
+        @SuppressLint("UseCompatLoadingForDrawables")
+        fun isCheckedSwitch(isCheck: Boolean) {
+            if (isCheck) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+        isCheckedSwitch(binding.switchDarkLightMode.isChecked)
+        binding.switchDarkLightMode.setOnCheckedChangeListener { buttonView, isChecked ->
+            isCheckedSwitch(isChecked)
+        }
+    }
     private fun typeConfig() {
         fun isCheckedSwitch(isCheck: Boolean) {
             if (isCheck) binding.smallButton.buttonType =
