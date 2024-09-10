@@ -1,101 +1,139 @@
-# DesignSystem
-
-# SmallButton:
+# Button:
 ## used in xml:
 
 ```xml
-<com.kazemieh.designsystem.libdesign.buttons.button.small.SmallButton  
-    android:id="@+id/smallButtonXml"  
+<com.kazemieh.designsystem.libdesign.Button  
+    android:id="@+id/button"  
     android:layout_width="match_parent"  
-    android:layout_height="wrap_content"  
+    android:layout_height="match_parent"  
+    android:layout_marginHorizontal="16dp"  
     android:layout_marginTop="8dp"  
     android:layout_marginBottom="16dp"  
-    android:paddingHorizontal="16dp"  
-    app:configurationSmallButton="primary"  
+    app:configurationButton="primary"  
     app:leadingIcon="@drawable/icon"  
     app:myCornerRadius="eight"  
-    app:stateSmallButton="enable"  
-    app:styleSmallButton="field"  
+    app:stateButton="enable"  
+    app:styleButton="elevated"  
+    app:buttonType="normal"  
     app:text="small button xml"  
     app:trailingIcon="@drawable/icon" />
+```
+## used in kotlin:
+
+```kotlin
+binding.button.buttonType = ButtonType.NORMAL // or ICON
+binding.button.configuration = ConfigurationButton.PRIMARY // or ERROR
+binding.button.leadingIcon =  
+binding.button.root.context.getDrawable(R.drawable.icon) // or null
+binding.button.trailingIcon =  
+binding.button.root.context.getDrawable(R.drawable.icon) // or null 
+binding.button.cornerRadius = CornerRadius.ROUND_100 // or ROUND_8 ,  25
+binding.button.state = StateButton.ENABLE // or  DISABLE, LOADING
+binding.button.style = StyleButton.FIELD // or   OUTLINE, TEXT, ELEVATED, TONAL
+binding.button.text = "smal button kotlin code"
+```
+
+## change text:
+### in xml:
+```xml
+app:buttonType="normall"  
+```
+
+### in kotlin:
+```kotlin
+binding.button.buttonType = ButtonType.NORMAL
+// NORMAL ,  ICON
 ```
 
 
 ## use **primary** or **error** to change background color:
+### in xml:
 ```xml
-app:configurationSmallButton="primary" 
+app:configurationButton="primary" 
 ```
 
+### in kotlin:
 ```kotlin
-binding.incSmallButtonSample.smallButton.configuration = ConfigurationSmallButton.PRIMARY
+binding.button.configuration = ConfigurationButton.PRIMARY
 //or
-binding.incSmallButtonSample.smallButton.configuration = ConfigurationSmallButton.ERROR
+binding.button.configuration = ConfigurationButton.ERROR
 ```
 
 ## icon in left:
+### in xml:
 ```xml
 app:leadingIcon="@drawable/icon" 
 ```
 
+### in kotlin:
 ```kotlin
-binding.incSmallButtonSample.smallButton.leadingIcon =  
-binding.incSmallButtonSample.root.context.getDrawable(R.drawable.icon)
+binding.button.leadingIcon =  
+binding.button.root.context.getDrawable(R.drawable.icon)
 //or
-binding.incSmallButtonSample.smallButton.leadingIcon = null
+binding.button.leadingIcon = null
 ```
 
 ## icon in right:
+### in xml:
 ```xml
 app:trailingIcon="@drawable/icon"
 ```
 
+### in kotlin:
 ```kotlin
-binding.incSmallButtonSample.smallButton.trailingIcon =  
-binding.incSmallButtonSample.root.context.getDrawable(R.drawable.icon)
+binding.button.trailingIcon =  
+binding.button.root.context.getDrawable(R.drawable.icon)
 //or
-binding.incSmallButtonSample.smallButton.trailingIcon = null
+binding.button.trailingIcon = null
 ```
 
 ## used **eight** or **hundred** to change radius or any **number**:
+### in xml:
 ```xml
 app:myCornerRadius="eight"  
 ```
 
+### in kotlin:
 ```kotlin
-binding.incSmallButtonSample.smallButton.cornerRadius = CornerRadius.ROUND_100
+binding.button.cornerRadius = CornerRadius.ROUND_100
 //or
-binding.incSmallButtonSample.smallButton.cornerRadius = CornerRadius.ROUND_8
+binding.button.cornerRadius = CornerRadius.ROUND_8
 //or
-binding.incSmallButtonSample.smallButton.cornerRadius = 25
+binding.button.cornerRadius = 25
 ```
 
 ## used **enable** or **disable** or **loading** to change state:
+### in xml:
 ```xml
-app:stateSmallButton="enable"  
+app:stateButton="enable"  
 ```
 
+### in kotlin:
 ```kotlin
-binding.incSmallButtonSample.smallButton.state = StateSmallButton.ENABLE
+binding.button.state = StateButton.ENABLE
 // ENABLE, DISABLE, LOADING
 ```
 
 ## used **field**, **outline**, **standard**, **elevated** or **tonal** to change style:
+### in xml:
 ```xml
-app:styleSmallButton="field" 
+app:styleButton="field" 
 ```
 
+### in kotlin:
 ```kotlin
-binding.incSmallButtonSample.smallButton.style = StyleSmallButton.FIELD
+binding.button.style = StyleButton.FIELD
 // FIELD, OUTLINE, TEXT, ELEVATED, TONAL
 ```
 
 ## change text:
+### in xml:
 ```xml
 app:text="small button xml"  
 ```
 
+### in kotlin:
 ```kotlin
-binding.incSmallButtonSample.smallButton.text = "smal button kotlin code"
+binding.button.text = "smal button kotlin code"
 ```
-
 
